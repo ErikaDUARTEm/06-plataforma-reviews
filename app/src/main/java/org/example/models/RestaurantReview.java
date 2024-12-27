@@ -2,20 +2,24 @@ package org.example.models;
 
 public class RestaurantReview extends Review{
   private Restaurant restaurant;
-  private Integer service;
-  private Integer establishment;
-  private Integer menu;
+  private Integer serviceRating;
+  private Integer establishmentRating;
+  private Integer menuRating;
 
 
-  public RestaurantReview(Integer rating, String comment, Restaurant restaurant, Integer service, Integer establishment, Integer menu) {
+  public RestaurantReview(Integer rating, String comment, Restaurant restaurant, Integer serviceRating, Integer establishmentRating, Integer menuRating) {
     super(rating, comment);
     this.restaurant = restaurant;
-    this.service = service;
-    this.establishment = establishment;
-    this.menu = menu;
+    this.serviceRating = serviceRating;
+    this.establishmentRating = establishmentRating;
+    this.menuRating = menuRating;
   }
   public RestaurantReview(){};
 
+  @Override public String getDetails() {
+    return "Restaurant: " + restaurant.getName() + ", "+ "Calificación" + getRating() +
+    ", Comentario: " + getComment();
+  }
   public Restaurant getRestaurant() {
     return restaurant;
   }
@@ -24,28 +28,28 @@ public class RestaurantReview extends Review{
     this.restaurant = restaurant;
   }
 
-  public Integer getService() {
-    return service;
+  public Integer getServiceRating() {
+    return serviceRating;
   }
 
-  public void setService(Integer service) {
-    this.service = service;
+  public void setServiceRating(Integer serviceRating) {
+    this.serviceRating = serviceRating;
   }
 
-  public Integer getEstablishment() {
-    return establishment;
+  public Integer getestablishmentRating() {
+    return establishmentRating;
   }
 
-  public void setEstablishment(Integer establishment) {
-    this.establishment = establishment;
+  public void setEstablishment(Integer establishmentRating) {
+    this.establishmentRating = establishmentRating;
   }
 
-  public Integer getMenu() {
-    return menu;
+  public Integer getMenuRating() {
+    return menuRating;
   }
 
-  public void setMenu(Integer menu) {
-    this.menu = menu;
+  public void setMenuRating(Integer menuRating) {
+    this.menuRating = menuRating;
   }
 
 }

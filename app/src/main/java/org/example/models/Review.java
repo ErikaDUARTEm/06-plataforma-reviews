@@ -1,6 +1,6 @@
 package org.example.models;
 
-public class Review {
+public abstract class Review {
   private Integer rating;
   private String comment;
 
@@ -11,6 +11,8 @@ public class Review {
 
   public Review() {
   }
+
+  public abstract String getDetails();
 
   public Integer getRating() {
     return rating;

@@ -2,15 +2,13 @@ package org.example.models;
 
 import org.example.services.interfaces.IObservable;
 import org.example.services.interfaces.IObserver;
-import org.example.services.interfaces.IReviewable;
 
 import java.util.LinkedList;
 
-public class Restaurant implements IObservable, IReviewable {
+public class Restaurant implements IObservable {
   private String name;
   private String address;
   private Menu menu;
-  private ReviewManager reviewManager;
   private NotificationService notificationService;
 
 
@@ -40,26 +38,6 @@ public class Restaurant implements IObservable, IReviewable {
 
   }
 
-  @Override
-  public void addReview(Review review) {
-
-  }
-
-  @Override
-  public void calculateAverageRating() {
-
-  }
-
-  @Override
-  public Double getAverageRating() {
-    return 0.0;
-  }
-
-  @Override
-  public LinkedList<Review> getReviews() {
-    return null;
-  }
-
   public String getName() {
     return name;
   }
@@ -82,14 +60,6 @@ public class Restaurant implements IObservable, IReviewable {
 
   public void setMenu(Menu menu) {
     this.menu = menu;
-  }
-
-  public ReviewManager getReviewManager() {
-    return reviewManager;
-  }
-
-  public void setReviewManager(ReviewManager reviewManager) {
-    this.reviewManager = reviewManager;
   }
 
   public NotificationService getNotificationService() {

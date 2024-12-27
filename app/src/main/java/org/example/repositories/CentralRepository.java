@@ -6,18 +6,20 @@ import org.example.models.Restaurant;
 import org.example.models.Review;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 public class CentralRepository {
   private static CentralRepository instance;
+
   private List<Restaurant> restaurants;
-  private List<Menu> menus;
+  private LinkedList<Menu> menus;
   private List<Dish> dishes;
   private List<Review> reviews;
 
   private CentralRepository(){
    this.restaurants = new ArrayList<>();
-   this.menus = new ArrayList<>();
+   this.menus = new LinkedList<>();
    this.dishes = new ArrayList<>();
    this.reviews = new ArrayList<>();
   }
@@ -27,4 +29,5 @@ public class CentralRepository {
     }
     return instance;
   }
+  
 }

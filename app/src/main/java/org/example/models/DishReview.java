@@ -2,17 +2,22 @@ package org.example.models;
 
 public class DishReview extends Review{
   private Dish dish;
-  private Integer flavor;
-  private Integer presentation;
+  private Integer flavorRating;
+  private Integer presentationRating;
 
 
-  public DishReview(Integer rating, String comment, Dish dish, Integer flavor, Integer presentation) {
+  public DishReview(Integer rating, String comment, Dish dish, Integer flavorRating, Integer presentationRating) {
     super(rating, comment);
     this.dish = dish;
-    this.flavor = flavor;
-    this.presentation = presentation;
+    this.flavorRating = flavorRating;
+    this.presentationRating = presentationRating;
   }
   public DishReview(){};
+
+  @Override public String getDetails() {
+    return "Restaurant: " + dish.getName() + ", "+ "Calificación" + getRating() +
+      ", Comentario: " + getComment();
+  }
 
   public Dish getDish() {
     return dish;
@@ -22,20 +27,20 @@ public class DishReview extends Review{
     this.dish = dish;
   }
 
-  public Integer getFlavor() {
-    return flavor;
+  public Integer getFlavorRating() {
+    return flavorRating;
   }
 
-  public void setFlavor(Integer flavor) {
-    this.flavor = flavor;
+  public void setFlavorRating(Integer flavorRating) {
+    this.flavorRating = flavorRating;
   }
 
-  public Integer getPresentation() {
-    return presentation;
+  public Integer getPresentatioNRating() {
+    return presentationRating;
   }
 
-  public void setPresentation(Integer presentation) {
-    this.presentation = presentation;
+  public void setPresentation(Integer presentationRating) {
+    this.presentationRating = presentationRating;
   }
 
 
