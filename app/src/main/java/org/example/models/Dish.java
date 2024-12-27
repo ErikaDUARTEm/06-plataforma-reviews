@@ -6,7 +6,7 @@ import org.example.services.interfaces.IReviewable;
 
 import java.util.LinkedList;
 
-public class Dish implements IObservable, IReviewable {
+public class Dish implements IReviewable {
   private String name;
   private Double price;
   private ReviewManager reviewManager;
@@ -20,22 +20,6 @@ public class Dish implements IObservable, IReviewable {
   }
 
   public Dish() {
-  }
-
-
-  @Override
-  public void addObserver(IObserver observer) {
-
-  }
-
-  @Override
-  public void removeObserve(IObserver observer) {
-
-  }
-
-  @Override
-  public void notifyObservers(String message) {
-
   }
 
   @Override

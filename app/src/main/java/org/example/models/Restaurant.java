@@ -6,7 +6,7 @@ import org.example.services.interfaces.IReviewable;
 
 import java.util.LinkedList;
 
-public class Restaurant implements IObservable, IReviewable {
+public class Restaurant implements IReviewable {
   private String name;
   private String address;
   private Menu menu;
@@ -22,22 +22,6 @@ public class Restaurant implements IObservable, IReviewable {
   }
 
   public Restaurant() {
-  }
-
-
-  @Override
-  public void addObserver(IObserver observer) {
-
-  }
-
-  @Override
-  public void removeObserve(IObserver observer) {
-
-  }
-
-  @Override
-  public void notifyObservers(String message) {
-
   }
 
   @Override
