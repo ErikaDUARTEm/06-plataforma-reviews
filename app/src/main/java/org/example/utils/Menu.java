@@ -14,7 +14,7 @@ public class Menu {
     }
 
     public void start() {
-      handler.writeLine("Bienvenid@ selecciona lo que deseas hacer:\n1. Registrar usuario\n2. Mostrar usuario\n0. Salir.");
+      handler.writeLine("Bienvenid@ selecciona lo que deseas hacer:\n1. Registrar usuario\n2. Mostrar usuario\n3.Agregar Restaurant\n0. Salir.");
       int option = -1;
       do {
         try {

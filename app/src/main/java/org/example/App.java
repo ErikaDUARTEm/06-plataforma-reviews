@@ -3,10 +3,13 @@
  */
 package org.example;
 
+import org.example.controllers.AddRestaurantController;
 import org.example.controllers.AddUserController;
 import org.example.controllers.ShowUserController;
 import org.example.controllers.interfaces.IController;
+import org.example.repositories.CentralRepository;
 import org.example.repositories.UserRepository;
+import org.example.services.restaurant.AddRestaurant;
 import org.example.services.user.AddUser;
 import org.example.services.user.ShowUser;
 import org.example.utils.ConsoleHandler;
@@ -18,14 +21,18 @@ public class App {
     public static void main(String[] args) {
         IHandler handler = new ConsoleHandler();
         UserRepository userRepository = UserRepository.getInstance();
+        CentralRepository centralRepository = CentralRepository.getInstance();
+
         AddUser addUserCommand = new AddUser(userRepository,handler);
         ShowUser showUserCommand = new ShowUser(handler, userRepository);
+        AddRestaurant addRestaurantCommand = new AddRestaurant(centralRepository, handler);
 
         Map<Integer, IController> controllers = Map.of(
           1, new AddUserController(addUserCommand),
-          2, new ShowUserController(showUserCommand)
+          2, new ShowUserController(showUserCommand),
+          3,new AddRestaurantController(addRestaurantCommand)
         );
-        handler.writeLine("Bienvenid@ selecciona lo que deseas hacer:\n1. Registrar usuario\n2. Mostrar usuario\n0. Salir.");
+        handler.writeLine("Bienvenid@ selecciona lo que deseas hacer:\n1. Registrar usuario\n2.Mostrar usuario\n3.Agregar Restaurante\n0. Salir.");
         int option = Integer.parseInt(handler.readLine());
 
 
