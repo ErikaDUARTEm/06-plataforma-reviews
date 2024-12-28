@@ -5,6 +5,7 @@ package org.example;
 
 import org.example.controllers.AddRestaurantController;
 import org.example.controllers.AddUserController;
+import org.example.controllers.DeleteRestaurantController;
 import org.example.controllers.ShowRestaurantsController;
 import org.example.controllers.ShowUserController;
 import org.example.controllers.UpdateRestaurantController;
@@ -12,6 +13,7 @@ import org.example.controllers.interfaces.IController;
 import org.example.repositories.CentralRepository;
 import org.example.repositories.UserRepository;
 import org.example.services.restaurant.AddRestaurant;
+import org.example.services.restaurant.DeleteRestaurant;
 import org.example.services.restaurant.ShowRestaurants;
 import org.example.services.restaurant.UpdateRestaurant;
 import org.example.services.user.AddUser;
@@ -35,13 +37,15 @@ public class App {
         AddRestaurant addRestaurantCommand = new AddRestaurant(centralRepository, handler);
         UpdateRestaurant updateRestaurantCommand = new UpdateRestaurant(centralRepository,handler);
         ShowRestaurants showRestaurantscommand = new ShowRestaurants(handler, centralRepository);
+        DeleteRestaurant deleteRestaurantcommand = new DeleteRestaurant(centralRepository, handler);
 
         Map<Integer, IController> controllers = Map.of(
           1, new AddUserController(addUserCommand),
           2, new ShowUserController(showUserCommand),
           3,new AddRestaurantController(addRestaurantCommand),
           4, new ShowRestaurantsController(showRestaurantscommand),
-          5,new UpdateRestaurantController(updateRestaurantCommand)
+          5,new UpdateRestaurantController(updateRestaurantCommand),
+          6, new DeleteRestaurantController(deleteRestaurantcommand)
         );
         Menu menu = new Menu(handler, controllers);
         menu.start();

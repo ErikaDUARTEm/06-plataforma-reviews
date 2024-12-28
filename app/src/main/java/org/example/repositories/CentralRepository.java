@@ -63,6 +63,8 @@ public class CentralRepository {
     }
     System.out.println("Restaurante no encontrado para actualizar.");
   }
-
+  public void deleteRestaurant(Restaurant restaurant){
+    restaurants.remove(restaurant);
+  }
 
 }
