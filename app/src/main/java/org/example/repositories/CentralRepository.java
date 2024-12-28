@@ -29,5 +29,7 @@ public class CentralRepository {
     }
     return instance;
   }
-  
+  public void addRestaurant(Restaurant restaurant){
+    restaurants.add(restaurant);
+  }
 }

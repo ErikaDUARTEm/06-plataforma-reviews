@@ -3,7 +3,6 @@ package org.example.models;
 import org.example.services.interfaces.IObservable;
 import org.example.services.interfaces.IObserver;
 
-import java.util.LinkedList;
 
 public class Restaurant implements IObservable {
   private String name;

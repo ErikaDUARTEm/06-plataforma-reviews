@@ -17,4 +17,10 @@ public class UserRepository {
     }
     return instance;
   }
+  public void addUser(User userNew){
+     users.add(userNew);
+  }
+  public LinkedList<User> getAllUsers(){
+    return users;
+  };
 }

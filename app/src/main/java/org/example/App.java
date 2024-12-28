@@ -3,12 +3,36 @@
  */
 package org.example;
 
+import org.example.controllers.AddUserController;
+import org.example.controllers.ShowUserController;
+import org.example.controllers.interfaces.IController;
+import org.example.repositories.UserRepository;
+import org.example.services.user.AddUser;
+import org.example.services.user.ShowUser;
+import org.example.utils.ConsoleHandler;
+import org.example.utils.IHandler;
+import java.util.Map;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
-    }
 
     public static void main(String[] args) {
+        IHandler handler = new ConsoleHandler();
+        UserRepository userRepository = UserRepository.getInstance();
+        AddUser addUserCommand = new AddUser(userRepository,handler);
+        ShowUser showUserCommand = new ShowUser(handler, userRepository);
+
+        Map<Integer, IController> controllers = Map.of(
+          1, new AddUserController(addUserCommand),
+          2, new ShowUserController(showUserCommand)
+        );
+        handler.writeLine("Bienvenid@ selecciona lo que deseas hacer:\n1. Registrar usuario\n2. Mostrar usuario\n0. Salir.");
+        int option = Integer.parseInt(handler.readLine());
+
+
+        do{
+            controllers.get(option).execute();
+            option = Integer.parseInt(handler.readLine());
+        }while(option != 0);
 
     }
 }
