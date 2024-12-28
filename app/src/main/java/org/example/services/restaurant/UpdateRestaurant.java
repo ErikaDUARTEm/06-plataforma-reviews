@@ -14,10 +14,12 @@ import java.util.Set;
 public class UpdateRestaurant implements ICommand<Restaurant> {
   private final CentralRepository repository;
   private final IHandler handler;
+  private UpdateMenu updateMenu;
 
   public UpdateRestaurant(CentralRepository repository, IHandler handler) {
     this.repository = repository;
     this.handler = handler;
+    this.updateMenu = new UpdateMenu(handler);
   }
 
   @Override
@@ -31,7 +33,7 @@ public class UpdateRestaurant implements ICommand<Restaurant> {
 
     Restaurant existingRestaurant = findRestaurantByName(nameRestaurant);
 
-    Menu menu = updateMenu(existingRestaurant.getMenu());
+    Menu menu = updateMenu.updateMenu(existingRestaurant.getMenu());
     updateNameAddressMenuRestaurant(existingRestaurant, addressRestaurant, newNameRestaurant, menu);
     handler.writeLine("Restaurante actualizado exitosamente.");
     existingRestaurant.toString();
@@ -52,32 +54,7 @@ public class UpdateRestaurant implements ICommand<Restaurant> {
     return restaurant;
   }
 
-  public Menu updateMenu(Menu existingMenu) {
-    Set<Dish> listDish = new HashSet<>(existingMenu.getDishes());
-    while (true) {
-      handler.writeLine("Ingresa el nombre del nuevo o existente plato (o presiona Enter para finalizar)");
-      String dishName = handler.readLine();
-      if (dishName.isEmpty()) {
-        break;
-      }
-      handler.writeLine("Ingresa el nuevo nombre del plato (o presiona Enter para mantener el actual)");
-      String newDishName = handler.readLine();
-      handler.writeLine("Ingresa el precio del plato");
-      double dishPrice = Double.parseDouble(handler.readLine());
 
-      Optional<Dish> optionalDish = listDish.stream()
-        .filter(dish -> dish.getName().equalsIgnoreCase(dishName))
-        .findFirst();
-
-      if (optionalDish.isPresent()) {
-        existingMenu.updateDish(dishName, newDishName, dishPrice);
-      } else {
-        listDish.add(new Dish(newDishName.isEmpty() ? dishName : newDishName, dishPrice));
-      }
-    }
-    existingMenu.setDishes(listDish);
-    return existingMenu;
-  }
 
   private Restaurant findRestaurantByName(String nameRestaurant) {
     return repository.getRestaurants().stream()
