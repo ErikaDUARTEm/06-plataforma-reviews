@@ -19,7 +19,7 @@ public class UpdateRestaurant implements ICommand<Restaurant> {
   public UpdateRestaurant(CentralRepository repository, IHandler handler) {
     this.repository = repository;
     this.handler = handler;
-    this.updateMenu = new UpdateMenu(handler);
+    this.updateMenu = new UpdateMenu(handler, repository);
   }
 
   @Override

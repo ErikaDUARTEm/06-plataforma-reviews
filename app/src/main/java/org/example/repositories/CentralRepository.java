@@ -41,6 +41,9 @@ public class CentralRepository {
       menus.add(restaurant.getMenu());
     }
   }
+  public void deleteDish(String nameDish){
+    dishes.remove(nameDish);
+  }
   public List<Restaurant> getRestaurants(){
     return restaurants;
   }
