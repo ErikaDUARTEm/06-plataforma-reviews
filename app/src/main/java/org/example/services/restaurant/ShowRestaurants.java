@@ -24,7 +24,7 @@ public class ShowRestaurants implements ICommand<List<Restaurant>>{
 
   public List<Restaurant> listRestaurants() {
     List<Restaurant> restaurants = repository.getRestaurants();
-    if(restaurants != null) {
+    if(restaurants != null && !restaurants.isEmpty()) {
       for (Restaurant restaurant : restaurants) {
         handler.writeLine("Nombre del restaurante: " + restaurant.getName() +
           " | Direcciòn: " + restaurant.getAddress() +
