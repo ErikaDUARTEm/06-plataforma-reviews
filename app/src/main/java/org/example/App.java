@@ -5,15 +5,21 @@ package org.example;
 
 import org.example.controllers.AddRestaurantController;
 import org.example.controllers.AddUserController;
+import org.example.controllers.ShowRestaurantsController;
 import org.example.controllers.ShowUserController;
+import org.example.controllers.UpdateRestaurantController;
 import org.example.controllers.interfaces.IController;
 import org.example.repositories.CentralRepository;
 import org.example.repositories.UserRepository;
 import org.example.services.restaurant.AddRestaurant;
+import org.example.services.restaurant.ShowRestaurants;
+import org.example.services.restaurant.UpdateRestaurant;
 import org.example.services.user.AddUser;
 import org.example.services.user.ShowUser;
 import org.example.utils.ConsoleHandler;
 import org.example.utils.IHandler;
+import org.example.utils.Menu;
+
 import java.util.Map;
 
 public class App {
@@ -23,23 +29,23 @@ public class App {
         UserRepository userRepository = UserRepository.getInstance();
         CentralRepository centralRepository = CentralRepository.getInstance();
 
+
         AddUser addUserCommand = new AddUser(userRepository,handler);
         ShowUser showUserCommand = new ShowUser(handler, userRepository);
         AddRestaurant addRestaurantCommand = new AddRestaurant(centralRepository, handler);
+        UpdateRestaurant updateRestaurantCommand = new UpdateRestaurant(centralRepository,handler);
+        ShowRestaurants showRestaurantscommand = new ShowRestaurants(handler, centralRepository);
 
         Map<Integer, IController> controllers = Map.of(
           1, new AddUserController(addUserCommand),
           2, new ShowUserController(showUserCommand),
-          3,new AddRestaurantController(addRestaurantCommand)
+          3,new AddRestaurantController(addRestaurantCommand),
+          4, new ShowRestaurantsController(showRestaurantscommand),
+          5,new UpdateRestaurantController(updateRestaurantCommand)
         );
-        handler.writeLine("Bienvenid@ selecciona lo que deseas hacer:\n1. Registrar usuario\n2.Mostrar usuario\n3.Agregar Restaurante\n0. Salir.");
-        int option = Integer.parseInt(handler.readLine());
-
-
-        do{
-            controllers.get(option).execute();
-            option = Integer.parseInt(handler.readLine());
-        }while(option != 0);
-
+        Menu menu = new Menu(handler, controllers);
+        menu.start();
     }
+
+
 }

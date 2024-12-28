@@ -11,16 +11,15 @@ public class Restaurant implements IObservable {
   private NotificationService notificationService;
 
 
-  public Restaurant(String name, String address) {
+  public Restaurant(String name, String address, Menu menu) {
     this.name = name;
     this.address = address;
-    this.menu = new Menu();
+    this.menu = menu;
     this.notificationService = new NotificationService();
   }
 
   public Restaurant() {
   }
-
 
   @Override
   public void addObserver(IObserver observer) {

@@ -23,7 +23,6 @@ public class ShowUser implements ICommand {
     for (User user : users) {
       handler.writeLine("Nombre de usuario: " + user.getName() + " | Email: " + user.getEmail());
     }
-
     return null;
   }
 
