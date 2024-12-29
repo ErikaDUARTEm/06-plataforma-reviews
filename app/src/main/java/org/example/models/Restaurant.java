@@ -1,47 +1,18 @@
 package org.example.models;
 
-import org.example.services.interfaces.IObservable;
-import org.example.services.interfaces.IObserver;
-import org.example.services.interfaces.IReviewable;
-
-import java.util.LinkedList;
-
-public class Restaurant implements IReviewable {
+public class Restaurant{
   private String name;
   private String address;
   private Menu menu;
-  private ReviewManager reviewManager;
-  private NotificationService notificationService;
 
 
-  public Restaurant(String name, String address) {
+  public Restaurant(String name, String address, Menu menu) {
     this.name = name;
     this.address = address;
-    this.menu = new Menu();
-    this.notificationService = new NotificationService();
+    this.menu = menu;
   }
 
-  public Restaurant() {
-  }
-
-  @Override
-  public void addReview(Review review) {
-
-  }
-
-  @Override
-  public void calculateAverageRating() {
-
-  }
-
-  @Override
-  public Double getAverageRating() {
-    return 0.0;
-  }
-
-  @Override
-  public LinkedList<Review> getReviews() {
-    return null;
+  private Restaurant() {
   }
 
   public String getName() {
@@ -68,19 +39,4 @@ public class Restaurant implements IReviewable {
     this.menu = menu;
   }
 
-  public ReviewManager getReviewManager() {
-    return reviewManager;
-  }
-
-  public void setReviewManager(ReviewManager reviewManager) {
-    this.reviewManager = reviewManager;
-  }
-
-  public NotificationService getNotificationService() {
-    return notificationService;
-  }
-
-  public void setNotificationService(NotificationService notificationService) {
-    this.notificationService = notificationService;
-  }
 }

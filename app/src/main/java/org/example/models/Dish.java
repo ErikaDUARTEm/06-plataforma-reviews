@@ -1,45 +1,15 @@
 package org.example.models;
 
-import org.example.services.interfaces.IObservable;
-import org.example.services.interfaces.IObserver;
-import org.example.services.interfaces.IReviewable;
-
-import java.util.LinkedList;
-
-public class Dish implements IReviewable {
+public class Dish{
   private String name;
   private Double price;
-  private ReviewManager reviewManager;
-  private NotificationService notificationService;
 
   public Dish(String name, Double price) {
     this.name = name;
     this.price = price;
-    this.reviewManager = new ReviewManager();
-    this.notificationService = new NotificationService();
   }
 
   public Dish() {
-  }
-
-  @Override
-  public void addReview(Review review) {
-
-  }
-
-  @Override
-  public void calculateAverageRating() {
-
-  }
-
-  @Override
-  public Double getAverageRating() {
-    return 0.0;
-  }
-
-  @Override
-  public LinkedList<Review> getReviews() {
-    return null;
   }
 
   public String getName() {
@@ -58,19 +28,13 @@ public class Dish implements IReviewable {
     this.price = price;
   }
 
-  public ReviewManager getReviewManager() {
-    return reviewManager;
+  @Override
+  public String toString() {
+    final StringBuffer sb = new StringBuffer("Dish{");
+    sb.append("name='").append(name).append('\'');
+    sb.append(", price=").append(price);
+    sb.append('}');
+    return sb.toString();
   }
 
-  public void setReviewManager(ReviewManager reviewManager) {
-    this.reviewManager = reviewManager;
-  }
-
-  public NotificationService getNotificationService() {
-    return notificationService;
-  }
-
-  public void setNotificationService(NotificationService notificationService) {
-    this.notificationService = notificationService;
-  }
 }
