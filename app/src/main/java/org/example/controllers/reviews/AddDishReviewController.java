@@ -1,4 +1,4 @@
-package org.example.controllers;
+package org.example.controllers.reviews;
 
 import org.example.controllers.interfaces.IController;
 import org.example.services.reviews.dishReview.AddDishReview;

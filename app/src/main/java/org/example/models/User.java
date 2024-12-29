@@ -11,7 +11,7 @@ public class User implements IObserver {
     this.email = email;
   }
 
-  public User() {
+  private User() {
   }
 
   @Override public void update(String message) {

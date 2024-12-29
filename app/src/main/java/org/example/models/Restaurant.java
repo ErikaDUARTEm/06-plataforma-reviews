@@ -1,24 +1,18 @@
 package org.example.models;
 
-import org.example.services.interfaces.IObservable;
-import org.example.services.interfaces.IObserver;
-
-
 public class Restaurant{
   private String name;
   private String address;
   private Menu menu;
-  private NotificationService notificationService;
 
 
   public Restaurant(String name, String address, Menu menu) {
     this.name = name;
     this.address = address;
     this.menu = menu;
-    this.notificationService = new NotificationService();
   }
 
-  public Restaurant() {
+  private Restaurant() {
   }
 
   public String getName() {
@@ -44,14 +38,5 @@ public class Restaurant{
   public void setMenu(Menu menu) {
     this.menu = menu;
   }
-
-  public NotificationService getNotificationService() {
-    return notificationService;
-  }
-
-  public void setNotificationService(NotificationService notificationService) {
-    this.notificationService = notificationService;
-  }
-
 
 }

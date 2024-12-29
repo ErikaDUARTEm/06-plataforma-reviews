@@ -1,4 +1,4 @@
-package org.example.controllers;
+package org.example.controllers.restaurants;
 
 import org.example.controllers.interfaces.IController;
 import org.example.services.restaurant.UpdateRestaurant;
@@ -8,6 +8,9 @@ public class UpdateRestaurantController implements IController {
 
   public UpdateRestaurantController(UpdateRestaurant command){
     this.command = command;
+  }
+
+  private UpdateRestaurantController() {
   }
 
   @Override

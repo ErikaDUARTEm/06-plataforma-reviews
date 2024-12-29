@@ -3,16 +3,16 @@
  */
 package org.example;
 
-import org.example.controllers.AddDishReviewController;
-import org.example.controllers.AddRestaurantController;
-import org.example.controllers.AddRestaurantReviewController;
-import org.example.controllers.AddUserController;
-import org.example.controllers.DeleteRestaurantController;
-import org.example.controllers.ShowDishReviewController;
-import org.example.controllers.ShowRestaurantReviewController;
-import org.example.controllers.ShowRestaurantsController;
-import org.example.controllers.ShowUserController;
-import org.example.controllers.UpdateRestaurantController;
+import org.example.controllers.reviews.AddDishReviewController;
+import org.example.controllers.restaurants.AddRestaurantController;
+import org.example.controllers.reviews.AddRestaurantReviewController;
+import org.example.controllers.user.AddUserController;
+import org.example.controllers.restaurants.DeleteRestaurantController;
+import org.example.controllers.reviews.ShowDishReviewController;
+import org.example.controllers.reviews.ShowRestaurantReviewController;
+import org.example.controllers.restaurants.ShowRestaurantsController;
+import org.example.controllers.user.ShowUserController;
+import org.example.controllers.restaurants.UpdateRestaurantController;
 import org.example.controllers.interfaces.IController;
 import org.example.factory.DishReviewFactory;
 import org.example.factory.RestaurantReviewFactory;
@@ -45,6 +45,7 @@ public class App {
         RestaurantReviewFactory restaurantReviewFactory = new RestaurantReviewFactory();
         DishReviewFactory dishReviewFactory = new DishReviewFactory();
 
+        
         AddUser addUserCommand = new AddUser(userRepository,handler, notificationService);
         ShowUser showUserCommand = new ShowUser(handler, userRepository);
         AddRestaurant addRestaurantCommand = new AddRestaurant(centralRepository, handler);

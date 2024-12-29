@@ -1,12 +1,11 @@
 package org.example.services.reviews.restaurantReview;
 
 import org.example.models.Restaurant;
-import org.example.models.RestaurantReview;
-import org.example.models.Review;
+import org.example.models.reviews.RestaurantReview;
+import org.example.models.reviews.Review;
 import org.example.repositories.CentralRepository;
 import org.example.services.interfaces.ICommand;
 import org.example.utils.IHandler;
-
 import java.util.List;
 
 public class ShowRestaurantReview  implements ICommand<List<RestaurantReview>>{

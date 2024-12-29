@@ -1,4 +1,4 @@
-package org.example.models;
+package org.example.models.reviews;
 
 public abstract class Review {
   private Integer rating;
@@ -9,7 +9,7 @@ public abstract class Review {
     this.comment = comment;
   }
 
-  public Review() {
+  private Review() {
   }
 
   public abstract String getDetails();
@@ -18,15 +18,8 @@ public abstract class Review {
     return rating;
   }
 
-  public void setRating(Integer rating) {
-    this.rating = rating;
-  }
-
   public String getComment() {
     return comment;
   }
 
-  public void setComment(String comment) {
-    this.comment = comment;
-  }
 }

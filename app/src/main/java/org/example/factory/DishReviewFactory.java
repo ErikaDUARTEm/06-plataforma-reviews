@@ -1,8 +1,8 @@
 package org.example.factory;
 
 import org.example.models.Dish;
-import org.example.models.DishReview;
-import org.example.models.Review;
+import org.example.models.reviews.DishReview;
+import org.example.models.reviews.Review;
 
 public class DishReviewFactory implements IReviewFactory<Dish>{
 

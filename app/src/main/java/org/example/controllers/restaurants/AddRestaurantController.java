@@ -1,14 +1,16 @@
-package org.example.controllers;
+package org.example.controllers.restaurants;
 
 import org.example.controllers.interfaces.IController;
 import org.example.services.restaurant.AddRestaurant;
 
-
 public class AddRestaurantController implements IController {
-  private final AddRestaurant command;
+  private AddRestaurant command;
 
   public AddRestaurantController(AddRestaurant command) {
     this.command = command;
+  }
+
+  private AddRestaurantController() {
   }
 
   @Override

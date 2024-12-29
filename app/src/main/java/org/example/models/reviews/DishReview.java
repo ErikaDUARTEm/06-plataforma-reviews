@@ -1,6 +1,8 @@
-package org.example.models;
+package org.example.models.reviews;
 
-public class DishReview extends Review{
+import org.example.models.Dish;
+
+public class DishReview extends Review {
   private Dish dish;
   private Integer flavorRating;
   private Integer presentationRating;
@@ -11,7 +13,7 @@ public class DishReview extends Review{
     this.flavorRating = flavorRating;
     this.presentationRating = presentationRating;
   }
-  public DishReview(){};
+  private DishReview(){};
 
   @Override public String getDetails() {
     return "Plato: " + dish.getName() + ",\n "+ "Calificación: " + getRating() +

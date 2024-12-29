@@ -1,12 +1,12 @@
 package org.example.repositories;
 
 import org.example.models.Dish;
-import org.example.models.DishReview;
+import org.example.models.reviews.DishReview;
 import org.example.models.Menu;
 import org.example.models.NotificationService;
 import org.example.models.Restaurant;
-import org.example.models.RestaurantReview;
-import org.example.models.Review;
+import org.example.models.reviews.RestaurantReview;
+
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.LinkedList;

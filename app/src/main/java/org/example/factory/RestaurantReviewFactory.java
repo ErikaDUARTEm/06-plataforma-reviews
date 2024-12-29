@@ -1,8 +1,8 @@
 package org.example.factory;
 
 import org.example.models.Restaurant;
-import org.example.models.RestaurantReview;
-import org.example.models.Review;
+import org.example.models.reviews.RestaurantReview;
+import org.example.models.reviews.Review;
 
 public class RestaurantReviewFactory implements IReviewFactory<Restaurant> {
 

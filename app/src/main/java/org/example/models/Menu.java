@@ -9,14 +9,11 @@ public class Menu {
   public Menu(Set<Dish> dishes) {
     this.dishes = dishes;
   }
-
   public Menu() {
   }
-
   public Set<Dish> getDishes() {
     return dishes;
   }
-
   public void setDishes(Set<Dish> dishes) {
     this.dishes = dishes;
   }

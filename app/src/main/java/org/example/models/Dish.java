@@ -1,18 +1,12 @@
 package org.example.models;
 
-import org.example.services.interfaces.IObservable;
-import org.example.services.interfaces.IObserver;
-
-
 public class Dish{
   private String name;
   private Double price;
-  private NotificationService notificationService;
 
   public Dish(String name, Double price) {
     this.name = name;
     this.price = price;
-    this.notificationService = new NotificationService();
   }
 
   public Dish() {
@@ -32,14 +26,6 @@ public class Dish{
 
   public void setPrice(Double price) {
     this.price = price;
-  }
-
-  public NotificationService getNotificationService() {
-    return notificationService;
-  }
-
-  public void setNotificationService(NotificationService notificationService) {
-    this.notificationService = notificationService;
   }
 
   @Override

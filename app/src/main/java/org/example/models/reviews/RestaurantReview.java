@@ -1,6 +1,8 @@
-package org.example.models;
+package org.example.models.reviews;
 
-public class RestaurantReview extends Review{
+import org.example.models.Restaurant;
+
+public class RestaurantReview extends Review {
   private Restaurant restaurant;
   private Integer serviceRating;
   private Integer establishmentRating;
@@ -14,7 +16,6 @@ public class RestaurantReview extends Review{
     this.establishmentRating = establishmentRating;
     this.menuRating = menuRating;
   }
-  public RestaurantReview(){};
 
   @Override public String getDetails() {
     return "Restaurant: \n" + restaurant.getName() + ", \n"+ "Calificación: " + getRating() +

@@ -1,13 +1,12 @@
 package org.example.services.reviews.dishReview;
 
 import org.example.models.Dish;
-import org.example.models.DishReview;
+import org.example.models.reviews.DishReview;
 import org.example.models.Restaurant;
-import org.example.models.Review;
+import org.example.models.reviews.Review;
 import org.example.repositories.CentralRepository;
 import org.example.services.interfaces.ICommand;
 import org.example.utils.IHandler;
-
 import java.util.List;
 
 public class ShowDishReview implements ICommand {

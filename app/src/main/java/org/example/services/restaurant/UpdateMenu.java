@@ -18,7 +18,7 @@ public class UpdateMenu {
     this.repository = repository;
   }
 
-  public UpdateMenu() {
+  private UpdateMenu() {
   }
 
   public Menu updateMenu(Menu existingMenu) {

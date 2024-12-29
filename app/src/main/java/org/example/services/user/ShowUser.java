@@ -4,7 +4,6 @@ import org.example.models.User;
 import org.example.repositories.UserRepository;
 import org.example.services.interfaces.ICommand;
 import org.example.utils.IHandler;
-
 import java.util.List;
 
 public class ShowUser implements ICommand {

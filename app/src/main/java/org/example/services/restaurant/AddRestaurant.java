@@ -6,8 +6,6 @@ import org.example.models.Restaurant;
 import org.example.repositories.CentralRepository;
 import org.example.services.interfaces.ICommand;
 import org.example.utils.IHandler;
-
-import java.util.HashSet;
 import java.util.Set;
 
 public class AddRestaurant implements ICommand<Restaurant> {
@@ -18,8 +16,6 @@ public class AddRestaurant implements ICommand<Restaurant> {
     this.repository = repository;
     this.handler = handler;
   }
-
-
   @Override
   public Restaurant execute() {
 
