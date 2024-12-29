@@ -4,7 +4,7 @@ import org.example.services.interfaces.IObservable;
 import org.example.services.interfaces.IObserver;
 
 
-public class Restaurant implements IObservable {
+public class Restaurant{
   private String name;
   private String address;
   private Menu menu;
@@ -19,21 +19,6 @@ public class Restaurant implements IObservable {
   }
 
   public Restaurant() {
-  }
-
-  @Override
-  public void addObserver(IObserver observer) {
-
-  }
-
-  @Override
-  public void removeObserve(IObserver observer) {
-
-  }
-
-  @Override
-  public void notifyObservers(String message) {
-
   }
 
   public String getName() {
@@ -67,4 +52,6 @@ public class Restaurant implements IObservable {
   public void setNotificationService(NotificationService notificationService) {
     this.notificationService = notificationService;
   }
+
+
 }

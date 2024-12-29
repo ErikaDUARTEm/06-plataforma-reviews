@@ -36,6 +36,7 @@ public class ShowRestaurants implements ICommand<List<Restaurant>>{
 
   private void processRestaurantDetails(Restaurant restaurant) {
     getDetailsRestaurant(restaurant);
+
     if (restaurant.getMenu() != null) {
        processMenuDetails(restaurant);
     } else {

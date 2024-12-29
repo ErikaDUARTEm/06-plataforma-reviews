@@ -3,6 +3,7 @@ package org.example.services.reviews.dishReview;
 import org.example.factory.IReviewFactory;
 import org.example.models.Dish;
 import org.example.models.DishReview;
+import org.example.models.NotificationService;
 import org.example.models.Restaurant;
 import org.example.models.Review;
 import org.example.repositories.CentralRepository;
@@ -13,11 +14,13 @@ public class AddDishReview implements ICommand {
   private final CentralRepository repository;
   private final IHandler handler;
   private final IReviewFactory<Dish> dishReviewFactory;
+  private final NotificationService notificationService;
 
-  public AddDishReview(CentralRepository repository, IHandler handler, IReviewFactory<Dish> dishReviewFactory) {
+  public AddDishReview(CentralRepository repository, IHandler handler, IReviewFactory<Dish> dishReviewFactory, NotificationService notificationService) {
     this.repository = repository;
     this.handler = handler;
     this.dishReviewFactory = dishReviewFactory;
+    this.notificationService = notificationService;
   }
 
   @Override
@@ -40,6 +43,8 @@ public class AddDishReview implements ICommand {
         Review review = dishReviewFactory.createReview(rating, comment, dish);
 
         repository.addDishReview((DishReview) review);
+        notificationService.notifyNewReview(nameDish, "Plato", rating);
+        repository.notifyRatingChangeDish(dish);
         handler.writeLine("Review agregada exitosamente.");
         return review;
       }else

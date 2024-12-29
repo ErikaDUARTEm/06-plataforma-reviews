@@ -1,5 +1,6 @@
 package org.example.services.user;
 
+import org.example.models.NotificationService;
 import org.example.models.User;
 import org.example.repositories.UserRepository;
 import org.example.services.interfaces.ICommand;
@@ -9,10 +10,12 @@ public class AddUser implements ICommand<User> {
 
   private final UserRepository repository;
   private final IHandler handler;
+  private final NotificationService notificationService;
 
-  public AddUser( UserRepository repository, IHandler handler){
+  public AddUser( UserRepository repository, IHandler handler, NotificationService notificationService){
     this.repository = repository;
     this.handler = handler;
+    this.notificationService = notificationService;
   }
 
   @Override
@@ -25,6 +28,7 @@ public class AddUser implements ICommand<User> {
   }
   public User addNewUser(String name, String email){
     User user = new User(name, email);
+    notificationService.addObserver(user);
     repository.addUser(user);
     return user;
   }

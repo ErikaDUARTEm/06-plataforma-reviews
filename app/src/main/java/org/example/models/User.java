@@ -14,24 +14,15 @@ public class User implements IObserver {
   public User() {
   }
 
-  @Override
-  public void update(String message) {
-
+  @Override public void update(String message) {
+    System.out.println("Notificación para " + name + ": " + message);
   }
-
   public String getName() {
     return name;
-  }
-
-  public void setName(String name) {
-    this.name = name;
   }
 
   public String getEmail() {
     return email;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
-  }
 }

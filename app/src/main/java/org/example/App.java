@@ -16,6 +16,7 @@ import org.example.controllers.UpdateRestaurantController;
 import org.example.controllers.interfaces.IController;
 import org.example.factory.DishReviewFactory;
 import org.example.factory.RestaurantReviewFactory;
+import org.example.models.NotificationService;
 import org.example.repositories.CentralRepository;
 import org.example.repositories.UserRepository;
 import org.example.services.restaurant.AddRestaurant;
@@ -39,19 +40,20 @@ public class App {
     public static void main(String[] args) {
         IHandler handler = new ConsoleHandler();
         UserRepository userRepository = UserRepository.getInstance();
-        CentralRepository centralRepository = CentralRepository.getInstance();
+        NotificationService notificationService = new NotificationService();
+        CentralRepository centralRepository = CentralRepository.getInstance(notificationService);
         RestaurantReviewFactory restaurantReviewFactory = new RestaurantReviewFactory();
         DishReviewFactory dishReviewFactory = new DishReviewFactory();
 
-        AddUser addUserCommand = new AddUser(userRepository,handler);
+        AddUser addUserCommand = new AddUser(userRepository,handler, notificationService);
         ShowUser showUserCommand = new ShowUser(handler, userRepository);
         AddRestaurant addRestaurantCommand = new AddRestaurant(centralRepository, handler);
         UpdateRestaurant updateRestaurantCommand = new UpdateRestaurant(centralRepository,handler);
         ShowRestaurants showRestaurantsCommand = new ShowRestaurants(handler, centralRepository);
         DeleteRestaurant deleteRestaurantCommand = new DeleteRestaurant(centralRepository, handler);
-        AddRestaurantReview addRestaurantReviewCommand = new AddRestaurantReview(centralRepository, handler, restaurantReviewFactory);
+        AddRestaurantReview addRestaurantReviewCommand = new AddRestaurantReview(centralRepository, handler, restaurantReviewFactory, notificationService);
         ShowRestaurantReview showRestaurantReviewCommand = new ShowRestaurantReview(centralRepository, handler);
-        AddDishReview addDishReviewCommand = new AddDishReview(centralRepository, handler,dishReviewFactory);
+        AddDishReview addDishReviewCommand = new AddDishReview(centralRepository, handler,dishReviewFactory, notificationService);
         ShowDishReview showDishReviewCommand = new ShowDishReview(centralRepository, handler);
 
         Map<Integer, IController> controllers = Map.of(

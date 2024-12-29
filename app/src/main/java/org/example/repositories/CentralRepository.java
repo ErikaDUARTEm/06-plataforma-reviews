@@ -3,6 +3,7 @@ package org.example.repositories;
 import org.example.models.Dish;
 import org.example.models.DishReview;
 import org.example.models.Menu;
+import org.example.models.NotificationService;
 import org.example.models.Restaurant;
 import org.example.models.RestaurantReview;
 import org.example.models.Review;
@@ -14,23 +15,24 @@ import java.util.Set;
 
 public class CentralRepository {
   private static CentralRepository instance;
-
+  private NotificationService notificationService;
   private List<Restaurant> restaurants;
   private LinkedList<Menu> menus;
   private Set<Dish> dishes;
   private List<RestaurantReview> restaurantReviews;
   private List<DishReview> dishReviews;
 
-  private CentralRepository(){
-   this.restaurants = new ArrayList<>();
-   this.menus = new LinkedList<>();
-   this.dishes = new HashSet<>();
-   this.restaurantReviews = new ArrayList<>();
-   this.dishReviews = new ArrayList<>();
+  private CentralRepository(NotificationService notificationService){
+    this.notificationService = notificationService;
+    this.restaurants = new ArrayList<>();
+    this.menus = new LinkedList<>();
+    this.dishes = new HashSet<>();
+    this.restaurantReviews = new ArrayList<>();
+    this.dishReviews = new ArrayList<>();
   }
-  public static synchronized CentralRepository getInstance(){
+  public static synchronized CentralRepository getInstance(NotificationService notificationService){
     if(instance == null){
-      instance = new CentralRepository();
+      instance = new CentralRepository(notificationService);
     }
     return instance;
   }
@@ -120,5 +122,13 @@ public class CentralRepository {
   public Double calculateRatingAverageDishReviews(Dish dish){
     List<DishReview> reviews = getReviewByDish(dish);
     return reviews.stream().mapToInt(DishReview::getRating).average().orElse(0);
+  }
+  public void notifyRatingChangeRestaurant(Restaurant restaurant){
+    double averageRating = calculateRatingAverageRestaurantReviews(restaurant);
+    notificationService.notifyRatingChange(restaurant.getName(), "Restaurant", averageRating);
+  }
+  public void notifyRatingChangeDish(Dish dish){
+    double averageRating = calculateRatingAverageDishReviews(dish);
+    notificationService.notifyRatingChange(dish.getName(), "Plato", averageRating);
   }
 }

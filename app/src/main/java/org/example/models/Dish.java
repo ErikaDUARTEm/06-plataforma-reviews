@@ -4,7 +4,7 @@ import org.example.services.interfaces.IObservable;
 import org.example.services.interfaces.IObserver;
 
 
-public class Dish implements IObservable {
+public class Dish{
   private String name;
   private Double price;
   private NotificationService notificationService;
@@ -16,22 +16,6 @@ public class Dish implements IObservable {
   }
 
   public Dish() {
-  }
-
-
-  @Override
-  public void addObserver(IObserver observer) {
-
-  }
-
-  @Override
-  public void removeObserve(IObserver observer) {
-
-  }
-
-  @Override
-  public void notifyObservers(String message) {
-
   }
 
   public String getName() {
@@ -66,4 +50,5 @@ public class Dish implements IObservable {
     sb.append('}');
     return sb.toString();
   }
+
 }

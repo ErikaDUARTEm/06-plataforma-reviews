@@ -1,6 +1,7 @@
 package org.example.services.reviews.restaurantReview;
 
 import org.example.factory.IReviewFactory;
+import org.example.models.NotificationService;
 import org.example.models.Restaurant;
 import org.example.models.RestaurantReview;
 import org.example.models.Review;
@@ -13,12 +14,13 @@ public class AddRestaurantReview implements ICommand<Review> {
   private final CentralRepository repository;
   private final IHandler handler;
   private IReviewFactory<Restaurant> restaurantReviewFactory;
+  private NotificationService notificationService;
 
-
-  public AddRestaurantReview(CentralRepository repository, IHandler handler, IReviewFactory<Restaurant> restaurantReviewFactory) {
+  public AddRestaurantReview(CentralRepository repository, IHandler handler, IReviewFactory<Restaurant> restaurantReviewFactory, NotificationService notificationService) {
     this.repository = repository;
     this.handler = handler;
     this.restaurantReviewFactory = restaurantReviewFactory;
+    this.notificationService = notificationService;
   }
 
   @Override
@@ -36,8 +38,10 @@ public class AddRestaurantReview implements ICommand<Review> {
       handler.writeLine("Ingresa un comentario: ");
       String comment = handler.readLine();
 
-      Review review = restaurantReviewFactory.createReview(rating, comment, restaurant);
+      Review review = restaurantReviewFactory.createReview( rating, comment, restaurant);
       repository.addRestaurantReview((RestaurantReview) review);
+      notificationService.notifyNewReview(restaurantName, "Restaurante", rating);
+      repository.notifyRatingChangeRestaurant(restaurant);
       handler.writeLine("Review agregada exitosamente.");
       return review;
     } else {
@@ -45,7 +49,7 @@ public class AddRestaurantReview implements ICommand<Review> {
       return null;
     }
 }
-    private int getValidRating () {
+    private Integer getValidRating () {
       int rating = 0;
       while (true) {
         handler.writeLine("Ingresa la calificacion (1- 5):");
