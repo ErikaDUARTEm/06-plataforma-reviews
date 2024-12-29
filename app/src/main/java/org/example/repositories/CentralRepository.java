@@ -3,6 +3,7 @@ package org.example.repositories;
 import org.example.models.Dish;
 import org.example.models.Menu;
 import org.example.models.Restaurant;
+import org.example.models.RestaurantReview;
 import org.example.models.Review;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -16,13 +17,13 @@ public class CentralRepository {
   private List<Restaurant> restaurants;
   private LinkedList<Menu> menus;
   private Set<Dish> dishes;
-  private List<Review> reviews;
+  private List<RestaurantReview> restaurantReviews;
 
   private CentralRepository(){
    this.restaurants = new ArrayList<>();
    this.menus = new LinkedList<>();
    this.dishes = new HashSet<>();
-   this.reviews = new ArrayList<>();
+   this.restaurantReviews = new ArrayList<>();
   }
   public static synchronized CentralRepository getInstance(){
     if(instance == null){
@@ -47,7 +48,12 @@ public class CentralRepository {
   public List<Restaurant> getRestaurants(){
     return restaurants;
   }
-
+  public Restaurant findRestaurantByName(String nameRestaurant) {
+    return getRestaurants().stream()
+      .filter(restaurant -> restaurant.getName().equalsIgnoreCase(nameRestaurant))
+      .findFirst()
+      .orElseThrow(() -> new RuntimeException("Restaurante no encontrado"));
+  }
   public void updateAddress(Restaurant restaurant, Restaurant updateRestaurant){
     if(updateRestaurant.getAddress() != null){
       restaurant.setAddress(updateRestaurant.getAddress());
@@ -70,4 +76,16 @@ public class CentralRepository {
     restaurants.remove(restaurant);
   }
 
+  public void addRestaurantReview(RestaurantReview review){
+    restaurantReviews.add(review);
+  }
+  public List<RestaurantReview> getReviewByRestaurant(Restaurant restaurant){
+    List<RestaurantReview> reviews = new ArrayList<>();
+    for(RestaurantReview review : restaurantReviews){
+      if (review.getRestaurant().equals(restaurant)){
+        reviews.add(review);
+      }
+    }
+    return reviews;
+  }
 }

@@ -17,8 +17,8 @@ public class RestaurantReview extends Review{
   public RestaurantReview(){};
 
   @Override public String getDetails() {
-    return "Restaurant: " + restaurant.getName() + ", "+ "Calificación" + getRating() +
-    ", Comentario: " + getComment();
+    return "Restaurant: \n" + restaurant.getName() + ", \n"+ "Calificación: " + getRating() +
+    ", \nComentario: " + getComment();
   }
   public Restaurant getRestaurant() {
     return restaurant;

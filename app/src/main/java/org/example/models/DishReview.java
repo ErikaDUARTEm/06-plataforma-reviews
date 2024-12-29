@@ -5,7 +5,6 @@ public class DishReview extends Review{
   private Integer flavorRating;
   private Integer presentationRating;
 
-
   public DishReview(Integer rating, String comment, Dish dish, Integer flavorRating, Integer presentationRating) {
     super(rating, comment);
     this.dish = dish;

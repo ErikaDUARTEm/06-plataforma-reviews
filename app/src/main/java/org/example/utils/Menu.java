@@ -17,7 +17,8 @@ public class Menu {
       int option = -1;
 
       do {
-        handler.writeLine("Bienvenid@ selecciona lo que deseas hacer:\n1. Registrar usuario\n2. Mostrar usuario\n3.Agregar Restaurant\n4.Mostrar Restaurantes\n5.Editar Restaurant\n6.Eliminar restaurante\n0. Salir.");
+        handler.writeLine("________________________________________________________");
+        handler.writeLine("Bienvenid@ selecciona lo que deseas hacer:\n1. Registrar usuario\n2. Mostrar usuario\n3.Agregar Restaurant\n4.Mostrar Restaurantes\n5.Editar Restaurant\n6.Eliminar restaurante\n7.Crear review de un restaurante\n8.Ver lista de review de un restaurante\n0. Salir.");
         try {
           option = Integer.parseInt(handler.readLine());
           IController controller = controllers.get(option);

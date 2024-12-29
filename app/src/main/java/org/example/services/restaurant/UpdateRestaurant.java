@@ -31,7 +31,7 @@ public class UpdateRestaurant implements ICommand<Restaurant> {
     handler.writeLine("Ingresa el nuevo nombre del restaurante (o presiona Enter para mantener el actual)");
     String newNameRestaurant = handler.readLine();
 
-    Restaurant existingRestaurant = findRestaurantByName(nameRestaurant);
+    Restaurant existingRestaurant = repository.findRestaurantByName(nameRestaurant);
 
     Menu menu = updateMenu.updateMenu(existingRestaurant.getMenu());
     updateNameAddressMenuRestaurant(existingRestaurant, addressRestaurant, newNameRestaurant, menu);
@@ -54,12 +54,4 @@ public class UpdateRestaurant implements ICommand<Restaurant> {
     return restaurant;
   }
 
-
-
-  private Restaurant findRestaurantByName(String nameRestaurant) {
-    return repository.getRestaurants().stream()
-      .filter(restaurant -> restaurant.getName().equalsIgnoreCase(nameRestaurant))
-      .findFirst()
-      .orElseThrow(() -> new RuntimeException("Restaurante no encontrado"));
-  }
 }
