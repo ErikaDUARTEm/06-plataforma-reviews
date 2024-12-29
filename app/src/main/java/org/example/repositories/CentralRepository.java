@@ -117,4 +117,8 @@ public class CentralRepository {
     }
     return reviews;
   }
+  public Double calculateRatingAverageDishReviews(Dish dish){
+    List<DishReview> reviews = getReviewByDish(dish);
+    return reviews.stream().mapToInt(DishReview::getRating).average().orElse(0);
+  }
 }

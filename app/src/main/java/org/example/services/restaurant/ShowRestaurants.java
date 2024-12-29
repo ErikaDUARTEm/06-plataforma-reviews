@@ -58,6 +58,7 @@ public class ShowRestaurants implements ICommand<List<Restaurant>>{
       "\n  Menu: ");
   }
   public void getDetailsDish(Dish dish){
-    handler.writeLine(" - Plato: " + dish.getName() + ", Precio: " + dish.getPrice());
+    handler.writeLine(" - Plato: " + dish.getName() + ", Precio: " + dish.getPrice() + "| Rating: " + repository.calculateRatingAverageDishReviews(dish));
+
   }
 }

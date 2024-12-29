@@ -18,7 +18,19 @@ public class Menu {
 
       do {
         handler.writeLine("________________________________________________________");
-        handler.writeLine("Bienvenid@ selecciona lo que deseas hacer:\n1. Registrar usuario\n2. Mostrar usuario\n3.Agregar Restaurant\n4.Mostrar Restaurantes\n5.Editar Restaurant\n6.Eliminar restaurante\n7.Crear review de un restaurante\n8.Ver lista de review de un restaurante\n9.Crear review de un plato\n10.Ver review de un plato\n0. Salir.");
+        handler.writeLine("Bienvenid@ selecciona lo que deseas hacer:");
+        handler.writeLine("1. Registrar usuario");
+        handler.writeLine("2. Mostrar usuario");
+        handler.writeLine("3. Agregar Restaurant");
+        handler.writeLine("4. Mostrar Restaurantes");
+        handler.writeLine("5. Editar Restaurant");
+        handler.writeLine("6. Eliminar restaurante");
+        handler.writeLine("7. Crear review de un restaurante");
+        handler.writeLine("8. Ver lista de review de un restaurante");
+        handler.writeLine("9. Crear review de un plato");
+        handler.writeLine("10. Ver review de un plato");
+        handler.writeLine("0. Salir.");
+        handler.writeLine("________________________________________________________");
         try {
           option = Integer.parseInt(handler.readLine());
           IController controller = controllers.get(option);
