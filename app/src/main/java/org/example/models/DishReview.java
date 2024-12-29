@@ -14,8 +14,8 @@ public class DishReview extends Review{
   public DishReview(){};
 
   @Override public String getDetails() {
-    return "Restaurant: " + dish.getName() + ", "+ "Calificación" + getRating() +
-      ", Comentario: " + getComment();
+    return "Plato: " + dish.getName() + ",\n "+ "Calificación: " + getRating() +
+      ",\n Comentario: " + getComment();
   }
 
   public Dish getDish() {

@@ -8,6 +8,7 @@ import org.example.controllers.AddRestaurantController;
 import org.example.controllers.AddRestaurantReviewController;
 import org.example.controllers.AddUserController;
 import org.example.controllers.DeleteRestaurantController;
+import org.example.controllers.ShowDishReviewController;
 import org.example.controllers.ShowRestaurantReviewController;
 import org.example.controllers.ShowRestaurantsController;
 import org.example.controllers.ShowUserController;
@@ -22,6 +23,7 @@ import org.example.services.restaurant.DeleteRestaurant;
 import org.example.services.restaurant.ShowRestaurants;
 import org.example.services.restaurant.UpdateRestaurant;
 import org.example.services.reviews.dishReview.AddDishReview;
+import org.example.services.reviews.dishReview.ShowDishReview;
 import org.example.services.reviews.restaurantReview.AddRestaurantReview;
 import org.example.services.reviews.restaurantReview.ShowRestaurantReview;
 import org.example.services.user.AddUser;
@@ -50,6 +52,7 @@ public class App {
         AddRestaurantReview addRestaurantReviewCommand = new AddRestaurantReview(centralRepository, handler, restaurantReviewFactory);
         ShowRestaurantReview showRestaurantReviewCommand = new ShowRestaurantReview(centralRepository, handler);
         AddDishReview addDishReviewCommand = new AddDishReview(centralRepository, handler,dishReviewFactory);
+        ShowDishReview showDishReviewCommand = new ShowDishReview(centralRepository, handler);
 
         Map<Integer, IController> controllers = Map.of(
           1, new AddUserController(addUserCommand),
@@ -60,7 +63,8 @@ public class App {
           6, new DeleteRestaurantController(deleteRestaurantCommand),
           7, new AddRestaurantReviewController(addRestaurantReviewCommand),
           8, new ShowRestaurantReviewController(showRestaurantReviewCommand),
-          9, new AddDishReviewController(addDishReviewCommand)
+          9, new AddDishReviewController(addDishReviewCommand),
+          10, new ShowDishReviewController(showDishReviewCommand)
         );
         Menu menu = new Menu(handler, controllers);
         menu.start();

@@ -100,12 +100,8 @@ public class CentralRepository {
     }
 
   public Dish findDishByName(String nameDish) {
-    System.out.println("Buscando plato con nombre: " + nameDish.trim());
     return getDish().stream()
-      .filter(dish -> {
-        System.out.println("Comparando con: " + dish.getName());
-        return dish.getName().equalsIgnoreCase(nameDish.trim());
-      })
+      .filter(dish -> dish.getName().equalsIgnoreCase(nameDish.trim()))
       .findFirst()
       .orElse(null);
   }
