@@ -5,6 +5,7 @@ import org.example.services.interfaces.IObserver;
 import java.util.LinkedList;
 
 public class NotificationService implements IObservable {
+
   private LinkedList<IObserver> observers;
 
 
@@ -35,5 +36,8 @@ public class NotificationService implements IObservable {
   public void notifyRatingChange(String entityName, String entityType, Double avegareRating){
     String message = "Calificación promedio actualizada para el " +  entityType  + ":" + entityName + ". Nueva calificación promedio: " + avegareRating;
     notifyObservers(message);
+  }
+  public LinkedList<IObserver> getObservers() {
+    return observers;
   }
 }

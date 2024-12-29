@@ -17,7 +17,7 @@ public class AddUserController implements IController {
 
   @Override
   public void execute() {
-    User user = command.execute();
+    command.execute();
     System.out.println("Usuario agregado exitosamente. ");
   }
 }
