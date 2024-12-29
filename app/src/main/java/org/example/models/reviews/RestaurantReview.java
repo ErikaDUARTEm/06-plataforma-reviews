@@ -8,7 +8,6 @@ public class RestaurantReview extends Review {
   private Integer establishmentRating;
   private Integer menuRating;
 
-
   public RestaurantReview(Integer rating, String comment, Restaurant restaurant, Integer serviceRating, Integer establishmentRating, Integer menuRating) {
     super(rating, comment);
     this.restaurant = restaurant;

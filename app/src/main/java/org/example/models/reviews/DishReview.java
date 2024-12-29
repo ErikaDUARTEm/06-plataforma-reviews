@@ -13,7 +13,6 @@ public class DishReview extends Review {
     this.flavorRating = flavorRating;
     this.presentationRating = presentationRating;
   }
-  private DishReview(){};
 
   @Override public String getDetails() {
     return "Plato: " + dish.getName() + ",\n "+ "Calificación: " + getRating() +

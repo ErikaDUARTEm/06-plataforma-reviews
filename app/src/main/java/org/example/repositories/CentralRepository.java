@@ -123,8 +123,7 @@ public class CentralRepository {
     List<DishReview> reviews = getReviewByDish(dish);
     return reviews.stream().mapToInt(DishReview::getRating).average().orElse(0);
   }
-  public void notifyRatingChangeRestaurant(Restaurant restaurant){
-    double averageRating = calculateRatingAverageRestaurantReviews(restaurant);
+  public void notifyRatingChangeRestaurant(Restaurant restaurant, Double averageRating){
     notificationService.notifyRatingChange(restaurant.getName(), "Restaurant", averageRating);
   }
   public void notifyRatingChangeDish(Dish dish){

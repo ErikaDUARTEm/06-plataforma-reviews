@@ -17,17 +17,4 @@ public class Menu {
   public void setDishes(Set<Dish> dishes) {
     this.dishes = dishes;
   }
-  public void updateDish(String name, String newName, Double newPrice) {
-    dishes.stream()
-      .filter(dish -> dish.getName().equalsIgnoreCase(name))
-      .findFirst()
-      .ifPresentOrElse(dish -> {
-        if (newName != null && !newName.isEmpty()) {
-          dish.setName(newName);
-        }
-        if (newPrice != null) {
-          dish.setPrice(newPrice);
-        }
-      }, () -> System.out.println("Plato no encontrado para actualizar."));
-   }
 }

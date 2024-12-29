@@ -45,7 +45,7 @@ public class App {
         RestaurantReviewFactory restaurantReviewFactory = new RestaurantReviewFactory();
         DishReviewFactory dishReviewFactory = new DishReviewFactory();
 
-        
+
         AddUser addUserCommand = new AddUser(userRepository,handler, notificationService);
         ShowUser showUserCommand = new ShowUser(handler, userRepository);
         AddRestaurant addRestaurantCommand = new AddRestaurant(centralRepository, handler);
