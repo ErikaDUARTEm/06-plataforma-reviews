@@ -24,22 +24,32 @@ public class ShowRestaurants implements ICommand<List<Restaurant>>{
 
   public List<Restaurant> listRestaurants() {
     List<Restaurant> restaurants = repository.getRestaurants();
-    if(restaurants != null && !restaurants.isEmpty()) {
+    if (restaurants != null && !restaurants.isEmpty()) {
       for (Restaurant restaurant : restaurants) {
-         getDetailsRestaurant(restaurant);
-        if (restaurant.getMenu() != null) {
-          for (Dish dish : restaurant.getMenu().getDishes()) {
-           getDetailsDish(dish);
-          }
-        } else {
-          handler.writeLine("Menu no disponible en este momento.");
-        }
+        processRestaurantDetails(restaurant);
       }
-    }else{
+    } else {
       handler.writeLine("No se encontraron restaurantes guardados en la base de datos.");
     }
     return restaurants;
   }
+
+  private void processRestaurantDetails(Restaurant restaurant) {
+    getDetailsRestaurant(restaurant);
+    if (restaurant.getMenu() != null) {
+       processMenuDetails(restaurant);
+    } else {
+      handler.writeLine("Menu no disponible en este momento.");
+    }
+  }
+
+  private void processMenuDetails(Restaurant restaurant){
+    for (Dish dish : restaurant.getMenu().getDishes()) {
+      getDetailsDish(dish);
+    }
+  }
+
+
   public void getDetailsRestaurant(Restaurant restaurant){
     handler.writeLine("---------------------------------------");
     handler.writeLine("Nombre del restaurante: " + restaurant.getName() +
