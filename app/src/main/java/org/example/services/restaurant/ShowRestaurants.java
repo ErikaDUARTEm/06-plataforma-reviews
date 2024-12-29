@@ -26,12 +26,10 @@ public class ShowRestaurants implements ICommand<List<Restaurant>>{
     List<Restaurant> restaurants = repository.getRestaurants();
     if(restaurants != null && !restaurants.isEmpty()) {
       for (Restaurant restaurant : restaurants) {
-        handler.writeLine("Nombre del restaurante: " + restaurant.getName() +
-          " | Direcciòn: " + restaurant.getAddress() +
-          "\n  Menu: ");
+         getDetailsRestaurant(restaurant);
         if (restaurant.getMenu() != null) {
           for (Dish dish : restaurant.getMenu().getDishes()) {
-            handler.writeLine(" - Plato: " + dish.getName() + ", Precio: " + dish.getPrice());
+           getDetailsDish(dish);
           }
         } else {
           handler.writeLine("Menu no disponible en este momento.");
@@ -41,5 +39,15 @@ public class ShowRestaurants implements ICommand<List<Restaurant>>{
       handler.writeLine("No se encontraron restaurantes guardados en la base de datos.");
     }
     return restaurants;
+  }
+  public void getDetailsRestaurant(Restaurant restaurant){
+    handler.writeLine("---------------------------------------");
+    handler.writeLine("Nombre del restaurante: " + restaurant.getName() +
+      "| Direcciòn: " + restaurant.getAddress() +
+      "\n Rating: " + repository.calculateRatingAverageRestaurantReviews(restaurant) +
+      "\n  Menu: ");
+  }
+  public void getDetailsDish(Dish dish){
+    handler.writeLine(" - Plato: " + dish.getName() + ", Precio: " + dish.getPrice());
   }
 }
