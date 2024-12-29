@@ -33,8 +33,7 @@ public class AddDishReview implements ICommand {
       String nameDish = handler.readLine();
       Dish dish = repository.findDishByName(nameDish);
       if (dish != null){
-        handler.writeLine("Ingresa la calificacion (1- 5):");
-        int rating = Integer.parseInt(handler.readLine());
+        int rating = getValidRating();
         handler.writeLine("Ingresa un comentario: ");
         String comment = handler.readLine();
 
@@ -49,5 +48,18 @@ public class AddDishReview implements ICommand {
       handler.writeLine("Restaurante no encontrado.");
     }
     return null;
+  }
+  private int getValidRating () {
+    int rating = 0;
+    while (true) {
+      handler.writeLine("Ingresa la calificacion (1- 5):");
+      rating = Integer.parseInt(handler.readLine());
+      if (rating >= 1 && rating <= 5) {
+        break;
+      } else {
+        handler.writeLine("Calificación inválida. Por favor ingresa un número entre 1 y 5.");
+      }
+    }
+    return rating;
   }
 }

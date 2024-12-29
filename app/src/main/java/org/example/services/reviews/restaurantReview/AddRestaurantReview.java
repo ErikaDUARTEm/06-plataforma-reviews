@@ -23,7 +23,7 @@ public class AddRestaurantReview implements ICommand<Review> {
 
   @Override
   public Review execute() {
-     return addReview();
+    return addReview();
   }
 
   public Review addReview() {
@@ -31,8 +31,8 @@ public class AddRestaurantReview implements ICommand<Review> {
     String restaurantName = handler.readLine();
     Restaurant restaurant = repository.findRestaurantByName(restaurantName);
     if (restaurant != null) {
-      handler.writeLine("Ingresa la calificacion (1- 5):");
-      int rating = Integer.parseInt(handler.readLine());
+      int rating = getValidRating();
+
       handler.writeLine("Ingresa un comentario: ");
       String comment = handler.readLine();
 
@@ -44,5 +44,19 @@ public class AddRestaurantReview implements ICommand<Review> {
       handler.writeLine("Restaurante no encontrado.");
       return null;
     }
-  }
+}
+    private int getValidRating () {
+      int rating = 0;
+      while (true) {
+        handler.writeLine("Ingresa la calificacion (1- 5):");
+        rating = Integer.parseInt(handler.readLine());
+        if (rating >= 1 && rating <= 5) {
+          break;
+        } else {
+          handler.writeLine("Calificación inválida. Por favor ingresa un número entre 1 y 5.");
+        }
+      }
+      return rating;
+    }
+
 }
