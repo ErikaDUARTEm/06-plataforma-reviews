@@ -34,10 +34,9 @@ public class AddRestaurantReview implements ICommand<Review> {
     Restaurant restaurant = repository.findRestaurantByName(restaurantName);
     if (restaurant != null) {
       int rating = getValidRating(handler, "General");
-      int serviceRating = getValidRating(handler, "Servicie");
-      int establishmentRating = getValidRating(handler, "Establishment");
+      int serviceRating = getValidRating(handler, "Servicio");
+      int establishmentRating = getValidRating(handler, "Establecimiento");
       int menuRating = getValidRating(handler, "Menu");
-
 
       handler.writeLine("Ingresa un comentario: ");
       String comment = handler.readLine();

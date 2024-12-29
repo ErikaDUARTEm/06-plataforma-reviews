@@ -98,7 +98,12 @@ public class CentralRepository {
   }
   public Double calculateRatingAverageRestaurantReviews(Restaurant restaurant){
     List<RestaurantReview> reviews = getReviewByRestaurant(restaurant);
-     return reviews.stream().mapToInt(RestaurantReview::getRating).average().orElse(0);
+     return reviews.stream()
+       .mapToDouble(review ->(review.getRating() +
+                              review.getServiceRating() +
+                              review.getestablishmentRating() +
+                              review.getMenuRating())/ 4.0)
+       .average().orElse(0);
     }
 
   public Dish findDishByName(String nameDish) {
@@ -121,13 +126,17 @@ public class CentralRepository {
   }
   public Double calculateRatingAverageDishReviews(Dish dish){
     List<DishReview> reviews = getReviewByDish(dish);
-    return reviews.stream().mapToInt(DishReview::getRating).average().orElse(0);
+    return reviews.stream()
+      .mapToDouble(review ->(
+        review.getRating() +
+        review.getFlavorRating() +
+        review.getPresentatioNRating())/ 3.0)
+      .average().orElse(0);
   }
   public void notifyRatingChangeRestaurant(Restaurant restaurant, Double averageRating){
     notificationService.notifyRatingChange(restaurant.getName(), "Restaurant", averageRating);
   }
-  public void notifyRatingChangeDish(Dish dish){
-    double averageRating = calculateRatingAverageDishReviews(dish);
+  public void notifyRatingChangeDish(Dish dish, Double averageRating){
     notificationService.notifyRatingChange(dish.getName(), "Plato", averageRating);
   }
 }

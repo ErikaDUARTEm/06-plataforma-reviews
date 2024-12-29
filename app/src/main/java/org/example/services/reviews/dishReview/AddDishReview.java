@@ -27,6 +27,7 @@ public class AddDishReview implements ICommand {
   public Object execute() {
     return addReview();
   }
+
   public Review addReview() {
     handler.writeLine("Ingresa el nombre del restaurante:");
     String restaurantName = handler.readLine();
@@ -35,34 +36,43 @@ public class AddDishReview implements ICommand {
       handler.writeLine("Ingresa el nombre del plato: ");
       String nameDish = handler.readLine();
       Dish dish = repository.findDishByName(nameDish);
-      if (dish != null){
-        int rating = getValidRating();
+      if (dish != null) {
+        int rating = getValidRating(handler, "General");
+        Integer flavorRating = getValidRating(handler, "Sabor");
+        Integer presentationRating = getValidRating( handler, "Presentación");
+
         handler.writeLine("Ingresa un comentario: ");
         String comment = handler.readLine();
-
-        Review review = dishReviewFactory.createReview(rating, comment, dish);
+        Review review = dishReviewFactory.createReview(rating, comment, dish, flavorRating, presentationRating);
 
         repository.addDishReview((DishReview) review);
         notificationService.notifyNewReview(nameDish, "Plato", rating);
-        repository.notifyRatingChangeDish(dish);
+        Double averageRating = repository.calculateRatingAverageDishReviews(dish);
+        repository.notifyRatingChangeDish(dish, averageRating);
         handler.writeLine("Review agregada exitosamente.");
         return review;
-      }else
-      { handler.writeLine("Plato no encontrado.");}
+      } else {
+        handler.writeLine("Plato no encontrado.");
+      }
     } else {
       handler.writeLine("Restaurante no encontrado.");
     }
     return null;
   }
-  private int getValidRating () {
+
+  private Integer getValidRating(IHandler handler, String type) {
     int rating = 0;
     while (true) {
-      handler.writeLine("Ingresa la calificacion (1- 5):");
-      rating = Integer.parseInt(handler.readLine());
-      if (rating >= 1 && rating <= 5) {
-        break;
-      } else {
-        handler.writeLine("Calificación inválida. Por favor ingresa un número entre 1 y 5.");
+      handler.writeLine("Ingresa la calificación para " + type + " (1-5):");
+      try {
+        rating = Integer.parseInt(handler.readLine());
+        if (rating >= 1 && rating <= 5) {
+          break;
+        } else {
+          handler.writeLine("Calificación inválida. Por favor ingresa un número entre 1 y 5.");
+        }
+      } catch (NumberFormatException e) {
+        handler.writeLine("Por favor, ingresa un número válido.");
       }
     }
     return rating;
