@@ -69,5 +69,5 @@ public class App {
         Menu menu = new Menu(handler, controllers);
         menu.start();
     }
-    
+
 }
