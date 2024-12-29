@@ -1,6 +1,7 @@
 package org.example.repositories;
 
 import org.example.models.Dish;
+import org.example.models.DishReview;
 import org.example.models.Menu;
 import org.example.models.Restaurant;
 import org.example.models.RestaurantReview;
@@ -18,12 +19,14 @@ public class CentralRepository {
   private LinkedList<Menu> menus;
   private Set<Dish> dishes;
   private List<RestaurantReview> restaurantReviews;
+  private List<DishReview> dishReviews;
 
   private CentralRepository(){
    this.restaurants = new ArrayList<>();
    this.menus = new LinkedList<>();
    this.dishes = new HashSet<>();
    this.restaurantReviews = new ArrayList<>();
+   this.dishReviews = new ArrayList<>();
   }
   public static synchronized CentralRepository getInstance(){
     if(instance == null){
@@ -36,6 +39,9 @@ public class CentralRepository {
   }
   public void addDish(Dish dish){
     dishes.add(dish);
+  }
+  public Set<Dish> getDish(){
+    return dishes;
   }
   public void addMenu(){
     for(Restaurant restaurant : restaurants){
@@ -52,7 +58,7 @@ public class CentralRepository {
     return getRestaurants().stream()
       .filter(restaurant -> restaurant.getName().equalsIgnoreCase(nameRestaurant))
       .findFirst()
-      .orElseThrow(() -> new RuntimeException("Restaurante no encontrado"));
+      .orElse(null);
   }
   public void updateAddress(Restaurant restaurant, Restaurant updateRestaurant){
     if(updateRestaurant.getAddress() != null){
@@ -93,4 +99,26 @@ public class CentralRepository {
      return reviews.stream().mapToInt(RestaurantReview::getRating).average().orElse(0);
     }
 
+  public Dish findDishByName(String nameDish) {
+    System.out.println("Buscando plato con nombre: " + nameDish.trim());
+    return getDish().stream()
+      .filter(dish -> {
+        System.out.println("Comparando con: " + dish.getName());
+        return dish.getName().equalsIgnoreCase(nameDish.trim());
+      })
+      .findFirst()
+      .orElse(null);
+  }
+  public void addDishReview(DishReview review){
+    dishReviews.add(review);
+  }
+  public List<DishReview> getReviewByDish(Dish dish){
+    List<DishReview> reviews = new ArrayList<>();
+    for(DishReview review : dishReviews){
+      if (review.getDish().equals(dish)){
+        reviews.add(review);
+      }
+    }
+    return reviews;
+  }
 }

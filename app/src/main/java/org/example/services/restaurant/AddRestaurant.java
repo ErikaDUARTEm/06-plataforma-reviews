@@ -27,15 +27,10 @@ public class AddRestaurant implements ICommand<Restaurant> {
     String nameRestaurant = handler.readLine();
     handler.writeLine("Ingresa la dirección del restaurante");
     String addressRestaurant = handler.readLine();
-    Set<Dish> listDish = new HashSet<>();
-    while (true) {
-      handler.writeLine("Ingresa el nombre del plato (o presiona Enter para finalizar)");
-      String dishName = handler.readLine();
-      if (dishName.isEmpty()) { break; }
-      handler.writeLine("Ingresa el precio del plato");
-      double dishPrice = Double.parseDouble(handler.readLine());
-      listDish.add(new Dish(dishName, dishPrice));
-    }
+
+    AddDish addDish = new AddDish(handler, repository);
+    Set<Dish> listDish = addDish.createDish();
+
     Menu menu = listDish.isEmpty() ? new Menu() : new Menu(listDish);
     return addRestaurant(nameRestaurant, addressRestaurant, menu);
   }
