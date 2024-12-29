@@ -29,6 +29,7 @@ public class Menu {
         handler.writeLine("8. Ver lista de review de un restaurante");
         handler.writeLine("9. Crear review de un plato");
         handler.writeLine("10. Ver review de un plato");
+        handler.writeLine("11. Desactivar notificaciones");
         handler.writeLine("0. Salir.");
         handler.writeLine("________________________________________________________");
         try {

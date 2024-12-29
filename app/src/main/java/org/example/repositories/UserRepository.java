@@ -3,6 +3,7 @@ package org.example.repositories;
 import org.example.models.User;
 
 import java.util.LinkedList;
+import java.util.List;
 
 public class UserRepository {
   private static UserRepository instance;
@@ -23,4 +24,5 @@ public class UserRepository {
   public LinkedList<User> getAllUsers(){
     return users;
   };
+
 }
