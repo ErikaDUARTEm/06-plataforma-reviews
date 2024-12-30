@@ -29,26 +29,20 @@ public class AddDishReview implements ICommand {
   }
 
   public Review addReview() {
-    handler.writeLine("Ingresa el nombre del restaurante:");
-    String restaurantName = handler.readLine();
+    String restaurantName = promptForInput("Ingresa el nombre del restaurante:");
     Restaurant restaurant = repository.findRestaurantByName(restaurantName);
     if (restaurant != null) {
-      handler.writeLine("Ingresa el nombre del plato: ");
-      String nameDish = handler.readLine();
+      String nameDish = promptForInput("Ingresa el nombre del plato:");
       Dish dish = repository.findDishByName(nameDish);
       if (dish != null) {
-        int rating = getValidRating(handler, "General");
-        Integer flavorRating = getValidRating(handler, "Sabor");
-        Integer presentationRating = getValidRating( handler, "Presentación");
+        int rating = getValidRating("General");
+        int flavorRating = getValidRating("Sabor");
+        int presentationRating = getValidRating("Presentacion");
+        String comment = promptForInput("Ingresa un comentario:");
 
-        handler.writeLine("Ingresa un comentario: ");
-        String comment = handler.readLine();
         Review review = dishReviewFactory.createReview(rating, comment, dish, flavorRating, presentationRating);
+        processReview(dish, review, nameDish, rating);
 
-        repository.addDishReview((DishReview) review);
-        notificationService.notifyNewReview(nameDish, "Plato", rating);
-        Double averageRating = repository.calculateRatingAverageDishReviews(dish);
-        repository.notifyRatingChangeDish(dish, averageRating);
         handler.writeLine("Review agregada exitosamente.");
         return review;
       } else {
@@ -60,21 +54,33 @@ public class AddDishReview implements ICommand {
     return null;
   }
 
-  private Integer getValidRating(IHandler handler, String type) {
+  private String promptForInput(String message) {
+    handler.writeLine(message);
+    return handler.readLine();
+  }
+
+  private int getValidRating(String type) {
     int rating = 0;
     while (true) {
-      handler.writeLine("Ingresa la calificación para " + type + " (1-5):");
+      handler.writeLine("Ingresa la calificacion para " + type + " (1-5):");
       try {
         rating = Integer.parseInt(handler.readLine());
         if (rating >= 1 && rating <= 5) {
           break;
         } else {
-          handler.writeLine("Calificación inválida. Por favor ingresa un número entre 1 y 5.");
+          handler.writeLine("Calificacion invalida. Por favor ingresa un numero entre 1 y 5.");
         }
       } catch (NumberFormatException e) {
-        handler.writeLine("Por favor, ingresa un número válido.");
+        handler.writeLine("Por favor, ingresa un numero valido.");
       }
     }
     return rating;
+  }
+
+  private void processReview(Dish dish, Review review, String nameDish, int rating) {
+    repository.addDishReview((DishReview) review);
+    notificationService.notifyNewReview(nameDish, "Plato", rating);
+    Double averageRating = repository.calculateRatingAverageDishReviews(dish);
+    repository.notifyRatingChangeDish(dish, averageRating);
   }
 }

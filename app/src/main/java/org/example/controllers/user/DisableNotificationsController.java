@@ -10,6 +10,9 @@ public class DisableNotificationsController implements IController {
     this.command = disableNotificationsCommand;
   }
 
+  private DisableNotificationsController() {
+  }
+
   @Override
   public void execute() {
     command.execute();

@@ -6,7 +6,7 @@ import java.util.LinkedList;
 
 public class NotificationService implements IObservable {
 
-  private LinkedList<IObserver> observers;
+  private final LinkedList<IObserver> observers;
 
 
   public NotificationService() {
