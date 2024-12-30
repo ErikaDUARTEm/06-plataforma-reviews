@@ -20,9 +20,9 @@ public class AddUser implements ICommand<User> {
 
   @Override
   public User execute() {
-    handler.writeLine("Ingresa el nombre del usuario");
+    handler.writeLine("Ingresa el nombre del usuario:");
     String nameUser = handler.readLine();
-    handler.writeLine("Ingresa el email");
+    handler.writeLine("Ingresa el email:");
     String emailUser = handler.readLine();
     return addNewUser(nameUser, emailUser);
   }
