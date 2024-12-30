@@ -14,6 +14,9 @@ public class DeleteRestaurant implements ICommand<Restaurant> {
     this.handler = handler;
   }
 
+  private DeleteRestaurant() {
+  }
+
   @Override
   public Restaurant execute() {
     handler.writeLine("Ingresa el nombre del restaurante que deseas eliminar.");

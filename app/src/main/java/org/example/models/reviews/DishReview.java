@@ -31,16 +31,8 @@ public class DishReview extends Review {
     return flavorRating;
   }
 
-  public void setFlavorRating(Integer flavorRating) {
-    this.flavorRating = flavorRating;
-  }
-
   public Integer getPresentatioNRating() {
     return presentationRating;
-  }
-
-  public void setPresentation(Integer presentationRating) {
-    this.presentationRating = presentationRating;
   }
 
 

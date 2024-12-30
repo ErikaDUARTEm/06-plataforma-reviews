@@ -14,10 +14,10 @@ public class Menu {
     }
 
     public void start() {
-      printMenu();
       String option= "";
 
       do {
+        printMenu();
         try {
           option= handler.readLine();
           int selectOption = Integer.parseInt(option);

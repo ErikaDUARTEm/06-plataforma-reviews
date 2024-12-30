@@ -9,12 +9,15 @@ import java.util.List;
 
 public class ShowRestaurants implements ICommand<List<Restaurant>>{
 
-  private final CentralRepository repository;
-  private final IHandler handler;
+  private CentralRepository repository;
+  private IHandler handler;
 
   public ShowRestaurants(IHandler handler, CentralRepository repository){
     this.handler = handler;
     this.repository = repository;
+  }
+
+  private ShowRestaurants() {
   }
 
   @Override

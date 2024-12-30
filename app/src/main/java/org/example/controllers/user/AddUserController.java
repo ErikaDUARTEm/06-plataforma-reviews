@@ -1,7 +1,6 @@
 package org.example.controllers.user;
 
 import org.example.controllers.interfaces.IController;
-import org.example.models.User;
 import org.example.services.user.AddUser;
 
 

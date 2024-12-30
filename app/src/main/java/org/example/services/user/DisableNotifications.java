@@ -24,8 +24,11 @@ public class DisableNotifications implements ICommand {
   public IObserver disableNotification(){
     handler.writeLine("Escribe tu nombre:");
     String userName = handler.readLine();
+    if (validateName(userName)) return null;
+
     handler.writeLine("Escribe tu email:");
     String userEmail = handler.readLine();
+    if (validateEmail(userEmail)) return null;
     handler.writeLine("Si deseas desactivar las notificaciones escribe 'Si'");
     String option = handler.readLine();
 
@@ -36,7 +39,7 @@ public class DisableNotifications implements ICommand {
       if(!userFound){
         handler.writeLine("No se encontro el usuario en la lista de suscritos");
       }
-    }else{handler.writeLine("Escribe la palabra completa.");
+    }else{handler.writeLine("Escribe la palabra correcta para desactivar las notificaciones.");
     }
     return null;
   }
@@ -46,10 +49,24 @@ public class DisableNotifications implements ICommand {
         User user = (User) observer;
         if (user.getEmail().equals(userEmail) && user.getName().equals(userName)) {
           notificationService.removeObserve(observer);
-          handler.writeLine("Acción exitosa, no recibirás más notificaciones");
+          handler.writeLine("Accion exitosa, no recibiras mas notificaciones");
           return true;
         }
       }
+    }
+    return false;
+  }
+  private Boolean validateName(String userName){
+    if (userName == null || userName.trim().isEmpty()) {
+      handler.writeLine("El nombre no puede ser vacio.");
+      return true;
+    }
+    return false;
+  }
+  private Boolean validateEmail(String userEmail){
+    if (userEmail == null || userEmail.trim().isEmpty()) {
+      handler.writeLine("El email no puede ser vacio.");
+      return true;
     }
     return false;
   }

@@ -32,24 +32,12 @@ public class RestaurantReview extends Review {
     return serviceRating;
   }
 
-  public void setServiceRating(Integer serviceRating) {
-    this.serviceRating = serviceRating;
-  }
-
   public Integer getestablishmentRating() {
     return establishmentRating;
   }
 
-  public void setEstablishment(Integer establishmentRating) {
-    this.establishmentRating = establishmentRating;
-  }
-
   public Integer getMenuRating() {
     return menuRating;
-  }
-
-  public void setMenuRating(Integer menuRating) {
-    this.menuRating = menuRating;
   }
 
 }

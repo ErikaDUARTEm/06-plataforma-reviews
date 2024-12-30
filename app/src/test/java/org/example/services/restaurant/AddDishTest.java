@@ -63,7 +63,7 @@ class AddDishTest {
 
     assertEquals(0, result.size());
   }
-  
+
   private void verifyHandlerMessages() {
     verify(mockHandler, times(3)).writeLine("Ingresa el nombre del plato (o presiona Enter para finalizar)");
     verify(mockHandler, times(2)).writeLine("Ingresa el precio del plato");

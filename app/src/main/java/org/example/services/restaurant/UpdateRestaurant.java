@@ -19,34 +19,50 @@ public class UpdateRestaurant implements ICommand<Restaurant> {
 
   @Override
   public Restaurant execute() {
-    handler.writeLine("Ingresa el nombre del restaurante");
-    String nameRestaurant = handler.readLine();
-    handler.writeLine("Ingresa la nueva dirección del restaurante");
-    String addressRestaurant = handler.readLine();
-    handler.writeLine("Ingresa el nuevo nombre del restaurante (o presiona Enter para mantener el actual)");
-    String newNameRestaurant = handler.readLine();
+    String nameRestaurant = promptUser("Ingresa el nombre del restaurante");
+    String addressRestaurant = promptUser("Ingresa la nueva dirección del restaurante");
+    String newNameRestaurant = promptUser("Ingresa el nuevo nombre del restaurante (o presiona Enter para mantener el actual)");
 
     Restaurant existingRestaurant = repository.findRestaurantByName(nameRestaurant);
+    if (existingRestaurant == null) {
+      handler.writeLine("Restaurante no encontrado.");
+      return null;
+    }
 
-    Menu menu = updateMenu.updateMenu(existingRestaurant.getMenu());
-    updateNameAddressMenuRestaurant(existingRestaurant, addressRestaurant, newNameRestaurant, menu);
+    Menu newMenu = updateMenu.updateMenu(existingRestaurant.getMenu());
+    updateRestaurantDetails(existingRestaurant, addressRestaurant, newNameRestaurant, newMenu);
+
     handler.writeLine("Restaurante actualizado exitosamente.");
-    existingRestaurant.toString();
     return existingRestaurant;
   }
 
-  public Restaurant updateNameAddressMenuRestaurant(Restaurant restaurant, String newAddress, String newName, Menu newMenu) {
+  private String promptUser(String message) {
+    handler.writeLine(message);
+    return handler.readLine();
+  }
+
+  private void updateRestaurantDetails(Restaurant restaurant, String newAddress, String newName, Menu newMenu) {
+    updateName(restaurant, newName);
+    updateAddress(restaurant, newAddress);
+    updateMenu(restaurant, newMenu);
+    repository.updateRestaurant(restaurant);
+  }
+
+  private void updateName(Restaurant restaurant, String newName) {
     if (newName != null && !newName.isEmpty()) {
       restaurant.setName(newName);
     }
+  }
+
+  private void updateAddress(Restaurant restaurant, String newAddress) {
     if (newAddress != null && !newAddress.isEmpty()) {
       restaurant.setAddress(newAddress);
     }
+  }
+
+  private void updateMenu(Restaurant restaurant, Menu newMenu) {
     if (newMenu != null) {
       restaurant.setMenu(newMenu);
     }
-    repository.updateRestaurant(restaurant);
-    return restaurant;
   }
-
 }

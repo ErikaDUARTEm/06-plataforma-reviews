@@ -20,4 +20,8 @@ public class Menu {
   public void setDishes(Set<Dish> dishes) {
     this.dishes = dishes;
   }
+
+  public void start() {
+
+  }
 }
