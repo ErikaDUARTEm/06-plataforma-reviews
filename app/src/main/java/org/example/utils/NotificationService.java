@@ -1,4 +1,4 @@
-package org.example.models;
+package org.example.utils;
 
 import org.example.services.interfaces.IObservable;
 import org.example.services.interfaces.IObserver;

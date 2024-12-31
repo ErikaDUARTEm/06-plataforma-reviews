@@ -1,6 +1,6 @@
 package org.example.services.user;
 
-import org.example.models.NotificationService;
+import org.example.utils.NotificationService;
 import org.example.models.User;
 import org.example.repositories.UserRepository;
 import org.example.utils.IHandler;

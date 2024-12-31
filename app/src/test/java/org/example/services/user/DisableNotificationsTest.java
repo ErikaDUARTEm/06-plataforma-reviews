@@ -1,4 +1,4 @@
-import org.example.models.NotificationService;
+import org.example.utils.NotificationService;
 import org.example.services.user.DisableNotifications;
 import org.example.utils.IHandler;
 import org.junit.jupiter.api.Test;

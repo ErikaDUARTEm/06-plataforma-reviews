@@ -1,7 +1,7 @@
 package org.example.repositories;
 
 import org.example.models.Dish;
-import org.example.models.NotificationService;
+import org.example.utils.NotificationService;
 import org.example.models.Restaurant;
 import org.example.models.reviews.DishReview;
 import org.example.models.reviews.RestaurantReview;

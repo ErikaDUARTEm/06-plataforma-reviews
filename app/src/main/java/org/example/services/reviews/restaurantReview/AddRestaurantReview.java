@@ -1,7 +1,7 @@
 package org.example.services.reviews.restaurantReview;
 
 import org.example.factory.IReviewFactory;
-import org.example.models.NotificationService;
+import org.example.utils.NotificationService;
 import org.example.models.Restaurant;
 import org.example.models.reviews.RestaurantReview;
 import org.example.models.reviews.Review;

@@ -14,7 +14,7 @@ import org.example.controllers.restaurants.UpdateRestaurantController;
 import org.example.controllers.interfaces.IController;
 import org.example.factory.DishReviewFactory;
 import org.example.factory.RestaurantReviewFactory;
-import org.example.models.NotificationService;
+import org.example.utils.NotificationService;
 import org.example.repositories.CentralRepository;
 import org.example.repositories.UserRepository;
 import org.example.services.restaurant.AddRestaurant;
