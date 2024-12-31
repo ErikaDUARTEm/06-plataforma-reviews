@@ -36,6 +36,7 @@ public class CentralRepository {
     }
     return instance;
   }
+
   public void addRestaurant(Restaurant restaurant){
     restaurants.add(restaurant);
   }
@@ -45,6 +46,7 @@ public class CentralRepository {
   public Set<Dish> getDish(){
     return dishes;
   }
+
   public void addMenu(){
     for(Restaurant restaurant : restaurants){
       menus.add(restaurant.getMenu());
@@ -58,7 +60,7 @@ public class CentralRepository {
   }
   public Restaurant findRestaurantByName(String nameRestaurant) {
     return getRestaurants().stream()
-      .filter(restaurant -> restaurant.getName().equalsIgnoreCase(nameRestaurant))
+      .filter(restaurant -> restaurant.getName()!= null && restaurant.getName().equalsIgnoreCase(nameRestaurant))
       .findFirst()
       .orElse(null);
   }

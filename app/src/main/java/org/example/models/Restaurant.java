@@ -12,7 +12,7 @@ public class Restaurant{
     this.menu = menu;
   }
 
-  private Restaurant() {
+  public Restaurant() {
   }
 
   public String getName() {

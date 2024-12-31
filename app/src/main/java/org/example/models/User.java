@@ -25,4 +25,6 @@ public class User implements IObserver {
     return email;
   }
 
+  public void setId(long l) {
+  }
 }
