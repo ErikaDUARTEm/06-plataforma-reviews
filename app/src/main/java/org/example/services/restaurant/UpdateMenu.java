@@ -29,7 +29,7 @@ public class UpdateMenu {
       if (dishName.isEmpty()) {
         break;
       }
-      handler.writeLine("¿Quieres editar o eliminar un plato? escribe una opcion: (editar / eliminar)");
+      handler.writeLine("¿Quieres agregar, editar o eliminar un plato? escribe una opcion: (agregar / editar / eliminar)");
       String action = handler.readLine();
       handleDish(action, dishName, listDish);
     }
@@ -43,17 +43,20 @@ public class UpdateMenu {
       .findFirst();
 
     if (action.equalsIgnoreCase("eliminar")) {
-       deleteDish(dishName, optionalDish, listDish);
+      deleteDish(dishName, optionalDish, listDish);
     } else if (action.equalsIgnoreCase("editar")) {
-      if(optionalDish.isPresent()){
+      if (optionalDish.isPresent()) {
         editDish(dishName, optionalDish.get());
-      }else{
+      } else {
         addNewDish(dishName, listDish);
       }
-    }else{
-      handler.writeLine("Accion no valida. por favor, escribe 'editar' o 'eliminar' ");
+    } else if (action.equalsIgnoreCase("agregar")) {
+      addNewDishDirectly(listDish);
+    } else {
+      handler.writeLine("Acción no válida. Por favor, escribe 'editar', 'eliminar' o 'agregar'.");
     }
   }
+
   private void editDish(String dishName, Dish dish){
     handler.writeLine("Ingresa el nuevo nombre del plato (o presiona enter para mantener el actual)");
     String newDishName = handler.readLine();
@@ -71,6 +74,40 @@ public class UpdateMenu {
     handler.writeLine("Ingresa el precio del plato");
     Double dishPrice = Double.parseDouble(handler.readLine());
     listDish.add(new Dish(newDishName.isEmpty() ? dishName : newDishName, dishPrice));
+  }
+  private String getDishName() {
+    String dishName;
+    do {
+      handler.writeLine("Ingresa el nombre del nuevo plato:");
+      dishName = handler.readLine();
+      if (dishName == null || dishName.trim().isEmpty()) {
+        handler.writeLine("El nombre del plato no puede estar vacío. Inténtalo de nuevo.");
+      }
+    } while (dishName == null || dishName.trim().isEmpty());
+    return dishName;
+  }
+
+  private Double getDishPrice() {
+    Double dishPrice = null;
+    while (dishPrice == null) {
+      handler.writeLine("Ingresa el precio del plato:");
+      try {
+        dishPrice = Double.parseDouble(handler.readLine());
+      } catch (NumberFormatException e) {
+        handler.writeLine("Precio inválido. Por favor, introduce un número válido.");
+      }
+    }
+    return dishPrice;
+  }
+
+  private void addDishToList(String dishName, Double dishPrice, Set<Dish> listDish) {
+    listDish.add(new Dish(dishName, dishPrice));
+    handler.writeLine("Plato agregado exitosamente.");
+  }
+  private void addNewDishDirectly(Set<Dish> listDish) {
+    String dishName = getDishName();
+    Double dishPrice = getDishPrice();
+    addDishToList(dishName, dishPrice, listDish);
   }
   private void deleteDish(String dishName, Optional<Dish> optionalDish, Set<Dish> listDish) {
     if (optionalDish.isPresent()) {

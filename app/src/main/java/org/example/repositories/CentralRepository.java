@@ -48,6 +48,7 @@ public class CentralRepository {
   }
 
   public void addMenu(){
+    menuRestaurants.clear();
     for(Restaurant restaurant : restaurants){
       menuRestaurants.add(restaurant.getMenu());
     }

@@ -20,7 +20,7 @@ public class UpdateRestaurant implements ICommand<Restaurant> {
   @Override
   public Restaurant execute() {
     String nameRestaurant = promptUser("Ingresa el nombre del restaurante");
-    String addressRestaurant = promptUser("Ingresa la nueva dirección del restaurante");
+    String addressRestaurant = promptUser("Ingresa la nueva dirección del restaurante (o presiona Enter para mantener el actual)");
     String newNameRestaurant = promptUser("Ingresa el nuevo nombre del restaurante (o presiona Enter para mantener el actual)");
 
     Restaurant existingRestaurant = repository.findRestaurantByName(nameRestaurant);
