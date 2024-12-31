@@ -34,6 +34,7 @@ public class AddRestaurant implements ICommand<Restaurant> {
   public Restaurant addRestaurant(String name, String address, MenuRestaurant menuRestaurant){
     Restaurant restaurant = new Restaurant(name, address, menuRestaurant);
     repository.addRestaurant(restaurant);
+    repository.addMenu();
     return restaurant;
   }
 

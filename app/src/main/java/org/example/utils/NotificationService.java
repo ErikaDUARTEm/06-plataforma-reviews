@@ -1,4 +1,4 @@
-package org.example.models;
+package org.example.utils;
 
 import org.example.services.interfaces.IObservable;
 import org.example.services.interfaces.IObserver;
@@ -29,7 +29,7 @@ public class NotificationService implements IObservable {
       observer.update(message);
     }
   }
-  public void notifyNewReview(String entityName, String entityType, Integer rating){
+  public void notifyNewReview(String entityName, String entityType, Double rating){
     String message = "Nueva review añadida para " + entityType + ": " + entityName + ". con una calificación: " + rating;
     notifyObservers(message);
   }

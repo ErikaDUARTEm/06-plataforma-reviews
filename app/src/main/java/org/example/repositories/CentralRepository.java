@@ -3,7 +3,7 @@ package org.example.repositories;
 import org.example.models.Dish;
 import org.example.models.reviews.DishReview;
 import org.example.models.MenuRestaurant;
-import org.example.models.NotificationService;
+import org.example.utils.NotificationService;
 import org.example.models.Restaurant;
 import org.example.models.reviews.RestaurantReview;
 
@@ -48,6 +48,7 @@ public class CentralRepository {
   }
 
   public void addMenu(){
+    menuRestaurants.clear();
     for(Restaurant restaurant : restaurants){
       menuRestaurants.add(restaurant.getMenu());
     }

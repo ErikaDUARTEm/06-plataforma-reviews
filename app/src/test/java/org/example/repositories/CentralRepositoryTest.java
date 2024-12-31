@@ -1,7 +1,7 @@
 package org.example.repositories;
 
 import org.example.models.Dish;
-import org.example.models.NotificationService;
+import org.example.utils.NotificationService;
 import org.example.models.Restaurant;
 import org.example.models.reviews.DishReview;
 import org.example.models.reviews.RestaurantReview;
@@ -101,14 +101,14 @@ class CentralRepositoryTest {
     RestaurantReview review2 = mock(RestaurantReview.class);
     when(review1.getRestaurant()).thenReturn(restaurant);
     when(review2.getRestaurant()).thenReturn(restaurant);
-    when(review1.getRating()).thenReturn(4);
-    when(review2.getRating()).thenReturn(5);
-    when(review1.getServiceRating()).thenReturn(3);
-    when(review2.getServiceRating()).thenReturn(4);
-    when(review1.getestablishmentRating()).thenReturn(4);
-    when(review2.getestablishmentRating()).thenReturn(4);
-    when(review1.getMenuRating()).thenReturn(4);
-    when(review2.getMenuRating()).thenReturn(5);
+    when(review1.getRating()).thenReturn(4.0);
+    when(review2.getRating()).thenReturn(5.0);
+    when(review1.getServiceRating()).thenReturn(3.0);
+    when(review2.getServiceRating()).thenReturn(4.0);
+    when(review1.getestablishmentRating()).thenReturn(4.0);
+    when(review2.getestablishmentRating()).thenReturn(4.0);
+    when(review1.getMenuRating()).thenReturn(4.0);
+    when(review2.getMenuRating()).thenReturn(5.0);
 
     centralRepository.addRestaurantReview(review1);
     centralRepository.addRestaurantReview(review2);
@@ -162,14 +162,14 @@ class CentralRepositoryTest {
     when(review1.getDish()).thenReturn(dish);
     when(review2.getDish()).thenReturn(dish);
 
-    when(review1.getRating()).thenReturn(4);
-    when(review2.getRating()).thenReturn(5);
+    when(review1.getRating()).thenReturn(4.0);
+    when(review2.getRating()).thenReturn(5.0);
 
-    when(review1.getFlavorRating()).thenReturn(4);
-    when(review2.getFlavorRating()).thenReturn(5);
+    when(review1.getFlavorRating()).thenReturn(4.0);
+    when(review2.getFlavorRating()).thenReturn(5.0);
 
-    when(review1.getPresentatioNRating()).thenReturn(3);
-    when(review2.getPresentatioNRating()).thenReturn(4);
+    when(review1.getPresentatioNRating()).thenReturn(3.0);
+    when(review2.getPresentatioNRating()).thenReturn(4.0);
 
     centralRepository.addDishReview(review1);
     centralRepository.addDishReview(review2);

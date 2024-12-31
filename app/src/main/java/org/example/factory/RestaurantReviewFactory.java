@@ -7,13 +7,13 @@ import org.example.models.reviews.Review;
 public class RestaurantReviewFactory implements IReviewFactory<Restaurant> {
 
   @Override
-  public Review createReview(int rating, String comment, Restaurant restaurant, Integer... additionalRatings) {
+  public Review createReview(Double rating, String comment, Restaurant restaurant, Double... additionalRatings) {
     if (additionalRatings.length < 3) {
       throw new IllegalArgumentException("Faltan calificaciones adicionales para el restaurante.");
     }
-    Integer serviceRating = additionalRatings[0];
-    Integer establishmentRating = additionalRatings[1];
-    Integer menuRating = additionalRatings[2];
+    Double serviceRating = additionalRatings[0];
+    Double establishmentRating = additionalRatings[1];
+    Double menuRating = additionalRatings[2];
     return new RestaurantReview(rating, comment, restaurant, serviceRating, establishmentRating, menuRating);
   }
 }
