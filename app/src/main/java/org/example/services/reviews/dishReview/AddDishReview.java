@@ -35,9 +35,9 @@ public class AddDishReview implements ICommand {
       String nameDish = promptForInput("Ingresa el nombre del plato:");
       Dish dish = repository.findDishByName(nameDish);
       if (dish != null) {
-        int rating = getValidRating("General");
-        int flavorRating = getValidRating("Sabor");
-        int presentationRating = getValidRating("Presentacion");
+        Double rating = getValidRating("General");
+        Double flavorRating = getValidRating("Sabor");
+        Double presentationRating = getValidRating("Presentacion");
         String comment = promptForInput("Ingresa un comentario:");
 
         Review review = dishReviewFactory.createReview(rating, comment, dish, flavorRating, presentationRating);
@@ -59,12 +59,12 @@ public class AddDishReview implements ICommand {
     return handler.readLine();
   }
 
-  private int getValidRating(String type) {
-    int rating = 0;
+  private Double getValidRating(String type) {
+    Double rating = 0.0;
     while (true) {
       handler.writeLine("Ingresa la calificacion para " + type + " (1-5):");
       try {
-        rating = Integer.parseInt(handler.readLine());
+        rating = Double.parseDouble(handler.readLine());
         if (rating >= 1 && rating <= 5) {
           break;
         } else {
@@ -77,7 +77,7 @@ public class AddDishReview implements ICommand {
     return rating;
   }
 
-  private void processReview(Dish dish, Review review, String nameDish, int rating) {
+  private void processReview(Dish dish, Review review, String nameDish, Double rating) {
     repository.addDishReview((DishReview) review);
     notificationService.notifyNewReview(nameDish, "Plato", rating);
     Double averageRating = repository.calculateRatingAverageDishReviews(dish);

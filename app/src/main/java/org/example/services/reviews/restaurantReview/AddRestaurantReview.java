@@ -33,10 +33,10 @@ public class AddRestaurantReview implements ICommand<Review> {
     String restaurantName = handler.readLine();
     Restaurant restaurant = repository.findRestaurantByName(restaurantName);
     if (restaurant != null) {
-      int rating = getValidRating(handler, "General");
-      int serviceRating = getValidRating(handler, "Servicio");
-      int establishmentRating = getValidRating(handler, "Establecimiento");
-      int menuRating = getValidRating(handler, "Menu");
+      Double rating = getValidRating(handler, "General");
+      Double serviceRating = getValidRating(handler, "Servicio");
+      Double establishmentRating = getValidRating(handler, "Establecimiento");
+      Double menuRating = getValidRating(handler, "Menu");
 
       handler.writeLine("Ingresa un comentario: ");
       String comment = handler.readLine();
@@ -53,12 +53,12 @@ public class AddRestaurantReview implements ICommand<Review> {
       return null;
     }
 }
-    private Integer getValidRating (IHandler handler, String type) {
-      int rating = 0;
+    private Double getValidRating (IHandler handler, String type) {
+      Double rating = 0.0;
       while (true) {
         handler.writeLine("Ingresa la calificación para " + type + " (1-5):");
         try{
-          rating = Integer.parseInt(handler.readLine());
+          rating = Double.parseDouble(handler.readLine());
           if (rating >= 1 && rating <= 5) {
             break;
           } else {

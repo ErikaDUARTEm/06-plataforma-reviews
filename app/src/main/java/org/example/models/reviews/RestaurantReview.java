@@ -4,11 +4,11 @@ import org.example.models.Restaurant;
 
 public class RestaurantReview extends Review {
   private Restaurant restaurant;
-  private Integer serviceRating;
-  private Integer establishmentRating;
-  private Integer menuRating;
+  private Double serviceRating;
+  private Double establishmentRating;
+  private Double menuRating;
 
-  public RestaurantReview(Integer rating, String comment, Restaurant restaurant, Integer serviceRating, Integer establishmentRating, Integer menuRating) {
+  public RestaurantReview(Double rating, String comment, Restaurant restaurant, Double serviceRating, Double establishmentRating, Double menuRating) {
     super(rating, comment);
     this.restaurant = restaurant;
     this.serviceRating = serviceRating;
@@ -28,15 +28,15 @@ public class RestaurantReview extends Review {
     this.restaurant = restaurant;
   }
 
-  public Integer getServiceRating() {
+  public Double getServiceRating() {
     return serviceRating;
   }
 
-  public Integer getestablishmentRating() {
+  public Double getestablishmentRating() {
     return establishmentRating;
   }
 
-  public Integer getMenuRating() {
+  public Double getMenuRating() {
     return menuRating;
   }
 

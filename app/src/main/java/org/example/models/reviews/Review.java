@@ -1,10 +1,10 @@
 package org.example.models.reviews;
 
 public abstract class Review {
-  private Integer rating;
+  private Double rating;
   private String comment;
 
-  public Review(Integer rating, String comment) {
+  public Review(Double rating, String comment) {
     this.rating = rating;
     this.comment = comment;
   }
@@ -14,7 +14,7 @@ public abstract class Review {
 
   public abstract String getDetails();
 
-  public Integer getRating() {
+  public Double getRating() {
     return rating;
   }
 

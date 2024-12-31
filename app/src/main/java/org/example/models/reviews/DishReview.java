@@ -4,10 +4,10 @@ import org.example.models.Dish;
 
 public class DishReview extends Review {
   private Dish dish;
-  private Integer flavorRating;
-  private Integer presentationRating;
+  private Double flavorRating;
+  private Double presentationRating;
 
-  public DishReview(Integer rating, String comment, Dish dish, Integer flavorRating, Integer presentationRating) {
+  public DishReview(Double rating, String comment, Dish dish, Double flavorRating, Double presentationRating) {
     super(rating, comment);
     this.dish = dish;
     this.flavorRating = flavorRating;
@@ -27,11 +27,11 @@ public class DishReview extends Review {
     this.dish = dish;
   }
 
-  public Integer getFlavorRating() {
+  public Double getFlavorRating() {
     return flavorRating;
   }
 
-  public Integer getPresentatioNRating() {
+  public Double getPresentatioNRating() {
     return presentationRating;
   }
 
