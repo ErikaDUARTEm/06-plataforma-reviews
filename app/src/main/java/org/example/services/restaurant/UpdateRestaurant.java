@@ -1,6 +1,6 @@
 package org.example.services.restaurant;
 
-import org.example.models.Menu;
+import org.example.models.MenuRestaurant;
 import org.example.models.Restaurant;
 import org.example.repositories.CentralRepository;
 import org.example.services.interfaces.ICommand;
@@ -29,8 +29,8 @@ public class UpdateRestaurant implements ICommand<Restaurant> {
       return null;
     }
 
-    Menu newMenu = updateMenu.updateMenu(existingRestaurant.getMenu());
-    updateRestaurantDetails(existingRestaurant, addressRestaurant, newNameRestaurant, newMenu);
+    MenuRestaurant newMenuRestaurant = updateMenu.updateMenu(existingRestaurant.getMenu());
+    updateRestaurantDetails(existingRestaurant, addressRestaurant, newNameRestaurant, newMenuRestaurant);
 
     handler.writeLine("Restaurante actualizado exitosamente.");
     return existingRestaurant;
@@ -41,10 +41,10 @@ public class UpdateRestaurant implements ICommand<Restaurant> {
     return handler.readLine();
   }
 
-  private void updateRestaurantDetails(Restaurant restaurant, String newAddress, String newName, Menu newMenu) {
+  private void updateRestaurantDetails(Restaurant restaurant, String newAddress, String newName, MenuRestaurant newMenuRestaurant) {
     updateName(restaurant, newName);
     updateAddress(restaurant, newAddress);
-    updateMenu(restaurant, newMenu);
+    updateMenu(restaurant, newMenuRestaurant);
     repository.updateRestaurant(restaurant);
   }
 
@@ -60,9 +60,9 @@ public class UpdateRestaurant implements ICommand<Restaurant> {
     }
   }
 
-  private void updateMenu(Restaurant restaurant, Menu newMenu) {
-    if (newMenu != null) {
-      restaurant.setMenu(newMenu);
+  private void updateMenu(Restaurant restaurant, MenuRestaurant newMenuRestaurant) {
+    if (newMenuRestaurant != null) {
+      restaurant.setMenu(newMenuRestaurant);
     }
   }
 }

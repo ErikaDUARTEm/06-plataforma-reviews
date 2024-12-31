@@ -1,7 +1,7 @@
 package org.example.services.restaurant;
 
 import org.example.models.Dish;
-import org.example.models.Menu;
+import org.example.models.MenuRestaurant;
 import org.example.models.Restaurant;
 import org.example.repositories.CentralRepository;
 import org.example.services.interfaces.ICommand;
@@ -27,12 +27,12 @@ public class AddRestaurant implements ICommand<Restaurant> {
     AddDish addDish = new AddDish(handler, repository);
     Set<Dish> listDish = addDish.createDish();
 
-    Menu menu = listDish.isEmpty() ? new Menu() : new Menu(listDish);
-    return addRestaurant(nameRestaurant, addressRestaurant, menu);
+    MenuRestaurant menuRestaurant = listDish.isEmpty() ? new MenuRestaurant() : new MenuRestaurant(listDish);
+    return addRestaurant(nameRestaurant, addressRestaurant, menuRestaurant);
   }
 
-  public Restaurant addRestaurant(String name, String address, Menu menu){
-    Restaurant restaurant = new Restaurant(name, address, menu);
+  public Restaurant addRestaurant(String name, String address, MenuRestaurant menuRestaurant){
+    Restaurant restaurant = new Restaurant(name, address, menuRestaurant);
     repository.addRestaurant(restaurant);
     return restaurant;
   }

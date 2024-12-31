@@ -26,5 +26,6 @@ public class User implements IObserver {
   }
 
   public void setId(long l) {
+
   }
 }
