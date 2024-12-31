@@ -2,7 +2,7 @@ package org.example.repositories;
 
 import org.example.models.Dish;
 import org.example.models.reviews.DishReview;
-import org.example.models.Menu;
+import org.example.models.MenuRestaurant;
 import org.example.models.NotificationService;
 import org.example.models.Restaurant;
 import org.example.models.reviews.RestaurantReview;
@@ -17,7 +17,7 @@ public class CentralRepository {
   private static CentralRepository instance;
   private NotificationService notificationService;
   private List<Restaurant> restaurants;
-  private LinkedList<Menu> menus;
+  private LinkedList<MenuRestaurant> menuRestaurants;
   private Set<Dish> dishes;
   private List<RestaurantReview> restaurantReviews;
   private List<DishReview> dishReviews;
@@ -25,7 +25,7 @@ public class CentralRepository {
   private CentralRepository(NotificationService notificationService){
     this.notificationService = notificationService;
     this.restaurants = new ArrayList<>();
-    this.menus = new LinkedList<>();
+    this.menuRestaurants = new LinkedList<>();
     this.dishes = new HashSet<>();
     this.restaurantReviews = new ArrayList<>();
     this.dishReviews = new ArrayList<>();
@@ -36,6 +36,7 @@ public class CentralRepository {
     }
     return instance;
   }
+
   public void addRestaurant(Restaurant restaurant){
     restaurants.add(restaurant);
   }
@@ -45,9 +46,10 @@ public class CentralRepository {
   public Set<Dish> getDish(){
     return dishes;
   }
+
   public void addMenu(){
     for(Restaurant restaurant : restaurants){
-      menus.add(restaurant.getMenu());
+      menuRestaurants.add(restaurant.getMenu());
     }
   }
   public void deleteDish(String nameDish){
@@ -58,7 +60,7 @@ public class CentralRepository {
   }
   public Restaurant findRestaurantByName(String nameRestaurant) {
     return getRestaurants().stream()
-      .filter(restaurant -> restaurant.getName().equalsIgnoreCase(nameRestaurant))
+      .filter(restaurant -> restaurant.getName()!= null && restaurant.getName().equalsIgnoreCase(nameRestaurant))
       .findFirst()
       .orElse(null);
   }

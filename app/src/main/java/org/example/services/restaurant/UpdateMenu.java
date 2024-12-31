@@ -1,7 +1,7 @@
 package org.example.services.restaurant;
 
 import org.example.models.Dish;
-import org.example.models.Menu;
+import org.example.models.MenuRestaurant;
 import org.example.repositories.CentralRepository;
 import org.example.utils.IHandler;
 
@@ -21,8 +21,8 @@ public class UpdateMenu {
   private UpdateMenu() {
   }
 
-  public Menu updateMenu(Menu existingMenu) {
-    Set<Dish> listDish = new HashSet<>(existingMenu.getDishes());
+  public MenuRestaurant updateMenu(MenuRestaurant existingMenuRestaurant) {
+    Set<Dish> listDish = new HashSet<>(existingMenuRestaurant.getDishes());
     while (true) {
       handler.writeLine("Ingresa el nombre del plato nuevo o existente (o presiona doble Enter para finalizar)");
       String dishName = handler.readLine();
@@ -33,8 +33,8 @@ public class UpdateMenu {
       String action = handler.readLine();
       handleDish(action, dishName, listDish);
     }
-    existingMenu.setDishes(listDish);
-    return existingMenu;
+    existingMenuRestaurant.setDishes(listDish);
+    return existingMenuRestaurant;
   }
 
   private void handleDish(String action, String dishName, Set<Dish> listDish) {

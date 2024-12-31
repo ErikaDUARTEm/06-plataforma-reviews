@@ -3,14 +3,14 @@ package org.example.models;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Menu {
+public class MenuRestaurant {
   private Set<Dish> dishes = new HashSet<>();
 
-  public Menu(Set<Dish> dishes) {
+  public MenuRestaurant(Set<Dish> dishes) {
     this.dishes = dishes;
   }
 
-  public Menu() {
+  public MenuRestaurant() {
   }
 
   public Set<Dish> getDishes() {
@@ -21,7 +21,4 @@ public class Menu {
     this.dishes = dishes;
   }
 
-  public void start() {
-
-  }
 }

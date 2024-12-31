@@ -3,16 +3,16 @@ package org.example.models;
 public class Restaurant{
   private String name;
   private String address;
-  private Menu menu;
+  private MenuRestaurant menuRestaurant;
 
 
-  public Restaurant(String name, String address, Menu menu) {
+  public Restaurant(String name, String address, MenuRestaurant menuRestaurant) {
     this.name = name;
     this.address = address;
-    this.menu = menu;
+    this.menuRestaurant = menuRestaurant;
   }
 
-  private Restaurant() {
+  public Restaurant() {
   }
 
   public String getName() {
@@ -31,12 +31,12 @@ public class Restaurant{
     this.address = address;
   }
 
-  public Menu getMenu() {
-    return menu;
+  public MenuRestaurant getMenu() {
+    return menuRestaurant;
   }
 
-  public void setMenu(Menu menu) {
-    this.menu = menu;
+  public void setMenu(MenuRestaurant menuRestaurant) {
+    this.menuRestaurant = menuRestaurant;
   }
 
 }
